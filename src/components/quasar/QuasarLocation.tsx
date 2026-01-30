@@ -25,7 +25,7 @@ const QuasarLocation = () => {
         <div className="max-w-4xl mx-auto">
           <div className="aspect-video w-full bg-muted overflow-hidden">
             <iframe
-              src="https://maps.google.com/maps?q=Esta%C3%A7%C3%A3o+Cabo+Branco+-+Ci%C3%AAncia,+Cultura+e+Artes,+Jo%C3%A3o+Pessoa&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=Estação%20Cabo%20Branco%20-%20Ciência,%20Cultura%20e%20Artes&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
