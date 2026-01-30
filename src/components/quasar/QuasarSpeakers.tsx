@@ -6,6 +6,9 @@ import aleksKissinger from "@/assets/speakers/aleks-kissinger.jpg";
 import fernandoBrandao from "@/assets/speakers/fernando-brandao.jpg";
 import amirCaldeira from "@/assets/speakers/amir-caldeira.jpg";
 import renatoPortugal from "@/assets/speakers/renato-portugal.jpg";
+import MarinaAnsanelli from '../../assets/speakers/marina-ansanelli.jpg';
+import FedericoHolik from '../../assets/speakers/daniel-moraes.jpg'; // Ajuste o nome do arquivo
+import DanielHaro from '../../assets/speakers/federico-holik.jpg'; // Ajuste o nome do arquivo
 
 interface Speaker {
   id: number;
@@ -48,6 +51,30 @@ const speakers: Speaker[] = [
     institution: "LNCC",
     image: renatoPortugal,
     bio: "Renato Portugal é Pesquisador Titular do Laboratório Nacional de Computação Científica (LNCC). É autor de livros sobre computação quântica e caminhadas quânticas, sendo uma referência internacional na área. Suas pesquisas em algoritmos quânticos contribuíram para o avanço da computação quântica no Brasil."
+  },
+  {
+    id: 5,
+    name: "Marina Ansanelli",
+    title: "PhD Student",
+    institution: "Perimeter Institute",
+    image: MarinaAnsanelli,
+    bio: "Pesquisadora em Fundamentos Quânticos e Inferência Causal. Recebedora do Emmy Noether Emerging Talent Fund.",
+  },
+  {
+    id: 6,
+    name: "Marina Ansanelli",
+    title: "PhD Student",
+    institution: "Perimeter Institute",
+    image: FedericoHolik,
+    bio: "Pesquisadora em Fundamentos Quânticos e Inferência Causal. Recebedora do Emmy Noether Emerging Talent Fund.",
+  },
+  {
+    id: 7,
+    name: "Daniel Haro",
+    title: "Chefe de Tecnologias Emergentes",
+    institution: "Venturus",
+    image: DanielHaro,
+    bio: "Líder de Tecnologias Emergentes no Venturus. Foca na preparação de empresas para a era quântica (Quantum Readiness) e na construção de pontes entre a investigação científica e o mercado.",
   }
 ];
 
