@@ -20,8 +20,8 @@ const QuasarRegistration = () => {
         if (existingScript) return;
 
         const script = document.createElement("script");
-        script.id = "even3-script";
-        script.src = `https://www.even3.com.br/widget/js?e=${EVENT_CODE}&t=${WIDGET_TYPE}&lang=pt`;
+        script.id = "even3-widget-ticket";
+        script.src = `https://www.even3.com.br/widget/js?e=ii-encontro-quasar-688507&t=ticket&lang=pt`;
         script.async = true;
         
         // Callback quando o script carrega com sucesso
@@ -80,7 +80,7 @@ const QuasarRegistration = () => {
             )}
 
             {/* Container do Widget - O ID deve corresponder ao esperado pelo script do Even3 */}
-            <div id={`even3-widget-${WIDGET_TYPE}`} className="w-full"></div>
+            <div id={`even3-widget-ticket-${WIDGET_TYPE}`} className="w-full"></div>
 
             {/* Fallback de Erro ou Bloqueio de Script */}
             {hasError && (
