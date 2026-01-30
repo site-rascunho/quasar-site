@@ -6,7 +6,7 @@ import { Loader2 } from "lucide-react";
 const EVENT_CODE = "ii-encontro-quasar-688507"; 
 
 // URL direta do Widget de Tickets (Isso carrega apenas a área de inscrição, sem o cabeçalho do Even3)
-const WIDGET_URL = `https://www.even3.com.br/widget/ticket?e=${EVENT_CODE}&lang=pt`;
+const WIDGET_URL = `https://www.even3.com.br/widget/ticket?e=${EVENT_CODE}&t=ticket&lang=pt`;
 
 const QuasarRegistration = () => {
   const [isLoading, setIsLoading] = useState(true);
