@@ -3,19 +3,16 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Loader2 } from "lucide-react";
 
 // --- CONFIGURAÇÃO DO EVEN3 ---
-// O identificador é a parte final da URL do seu evento (ex: even3.com.br/ii-encontro-quasar)
 const EVENT_CODE = "ii-encontro-quasar-688507"; 
-const WIDGET_TYPE = "ticket"; // 'ticket' é o padrão para inscrições
+const WIDGET_TYPE = "ticket"; 
 
 const QuasarRegistration = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    // Função para carregar o script do Even3 dinamicamente
     const loadEven3Widget = () => {
       try {
-        // Verifica se o script já existe para evitar duplicação
         const existingScript = document.getElementById("even3-script");
         if (existingScript) return;
 
@@ -24,12 +21,10 @@ const QuasarRegistration = () => {
         script.src = `https://www.even3.com.br/widget/js?e=${EVENT_CODE}&t=${WIDGET_TYPE}&lang=pt`;
         script.async = true;
         
-        // Callback quando o script carrega com sucesso
         script.onload = () => {
           setIsLoading(false);
         };
 
-        // Callback de erro
         script.onerror = () => {
           console.error("Erro ao carregar widget do Even3");
           setHasError(true);
@@ -44,15 +39,10 @@ const QuasarRegistration = () => {
       }
     };
 
-    // Pequeno delay para garantir que o DOM (a div alvo) esteja pronto
     const timer = setTimeout(loadEven3Widget, 500);
 
     return () => {
       clearTimeout(timer);
-      // Opcional: remover o script ao desmontar o componente, 
-      // mas alguns widgets preferem persistir se o usuário navegar e voltar.
-      // const script = document.getElementById("even3-script");
-      // if (script) document.body.removeChild(script);
     };
   }, []);
 
@@ -79,7 +69,7 @@ const QuasarRegistration = () => {
               </div>
             )}
 
-            {/* Container do Widget - O ID deve corresponder ao esperado pelo script do Even3 */}
+            {/* Container do Widget */}
             <div id={`even3-widget-${WIDGET_TYPE}`} className="w-full"></div>
 
             {/* Fallback de Erro ou Bloqueio de Script */}
@@ -90,7 +80,7 @@ const QuasarRegistration = () => {
                 </p>
                 <Button asChild size="lg">
                   <a 
-                    href={`https://www.even3.com.br/${EVENT_CODE}`} 
+                    href="https://www.even3.com.br/tickets/get/ii-encontro-quasar-688507?even3_orig=get_tickets"
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
