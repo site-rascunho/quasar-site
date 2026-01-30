@@ -6,6 +6,19 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 
+// TROQUE pelo seu ID:
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe3BVoAk0HBdj7NXX_6mxuwoTFlIQNBEYltZj59IVSFFeH7xw/formResponse";
+
+// TROQUE pelos entry.X de cada campo do seu formulário Google
+const ENTRY = {
+  name: "entry.973886953",
+  email: "entry.1642407322",
+  institution: "entry.980454417",
+  role: "entry.1273778173",
+  participation: "entry.1981685151",
+  message: "entry.1232827003",
+};
+
 const QuasarRegistration = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -22,23 +35,44 @@ const QuasarRegistration = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    toast({
-      title: "Pré-inscrição recebida!",
-      description: "Entraremos em contato em breve com mais informações.",
+    // Monta os dados no formato exigido pelo Google Forms
+    const formBody = new URLSearchParams({
+      [ENTRY.name]: formData.name,
+      [ENTRY.email]: formData.email,
+      [ENTRY.institution]: formData.institution,
+      [ENTRY.role]: formData.role,
+      [ENTRY.participation]: formData.participation,
+      [ENTRY.message]: formData.message,
     });
 
-    setFormData({
-      name: "",
-      email: "",
-      institution: "",
-      role: "",
-      participation: "",
-      message: ""
-    });
-    setIsSubmitting(false);
+    try {
+      await fetch(GOOGLE_FORM_URL, {
+        method: "POST",
+        mode: "no-cors", // obrigatório para Google Forms aceitar requisições do front
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formBody.toString(),
+      });
+      toast({
+        title: "Pré-inscrição recebida!",
+        description: "Entraremos em contato em breve com mais informações.",
+      });
+      setFormData({
+        name: "",
+        email: "",
+        institution: "",
+        role: "",
+        participation: "",
+        message: ""
+      });
+    } catch (err) {
+      toast({
+        title: "Erro",
+        description: "Não foi possível enviar sua pré-inscrição. Tente novamente mais tarde.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
