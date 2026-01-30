@@ -59,18 +59,14 @@ const QuasarRegistration = () => {
 
     // Se houver erros, interrompe o envio e faz o scroll
     if (Object.keys(currentErrors).length > 0) {
-      // Pega o primeiro campo com erro
       const firstErrorField = Object.keys(currentErrors)[0];
       const element = document.getElementById(firstErrorField);
 
       if (element) {
-        // Calcula a posição para scrollar com um pouco de folga (offset)
-        const yOffset = -120; // Ajuste para não ficar colado no topo ou embaixo do menu
+        const yOffset = -120;
         const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
         window.scrollTo({ top: y, behavior: 'smooth' });
         
-        // Tenta focar se for um input
         if (element.tagName === 'INPUT') {
             element.focus();
         }
@@ -95,10 +91,13 @@ const QuasarRegistration = () => {
         body: googleFormData,
       });
 
+      // --- MENSAGEM DE SUCESSO VERDE E SUTIL ---
       toast({
-        title: "Pré-inscrição recebida!",
-        description: "Seus dados foram salvos com sucesso.",
+        title: "Inscrição Recebida",
+        description: "Seus dados foram enviados com sucesso.",
+        className: "bg-green-50 border-green-200 text-green-800", // Estilo verde suave
       });
+      // -----------------------------------------
 
       setFormData({
         name: "",
@@ -108,7 +107,7 @@ const QuasarRegistration = () => {
         participation: "",
         message: ""
       });
-      setErrors({}); // Limpa erros após sucesso
+      setErrors({});
 
     } catch (error) {
       console.error("Erro ao enviar:", error);
@@ -122,7 +121,6 @@ const QuasarRegistration = () => {
     }
   };
 
-  // Componente auxiliar para exibir a mensagem de erro
   const ErrorMessage = ({ message }: { message?: string }) => {
     if (!message) return null;
     return <span className="text-red-500 text-xs mt-1 block font-medium">{message}</span>;
@@ -141,7 +139,6 @@ const QuasarRegistration = () => {
 
           <form onSubmit={handleSubmit} className="space-y-6" noValidate>
             
-            {/* Nome */}
             <div className="space-y-2">
               <Label htmlFor="name" className={errors.name ? "text-red-500" : ""}>Nome Completo *</Label>
               <Input
@@ -156,7 +153,6 @@ const QuasarRegistration = () => {
               <ErrorMessage message={errors.name} />
             </div>
 
-            {/* Email */}
             <div className="space-y-2">
               <Label htmlFor="email" className={errors.email ? "text-red-500" : ""}>E-mail *</Label>
               <Input
@@ -172,7 +168,6 @@ const QuasarRegistration = () => {
               <ErrorMessage message={errors.email} />
             </div>
 
-            {/* Instituição */}
             <div className="space-y-2">
               <Label htmlFor="institution" className={errors.institution ? "text-red-500" : ""}>Instituição/Empresa *</Label>
               <Input
@@ -187,7 +182,6 @@ const QuasarRegistration = () => {
               <ErrorMessage message={errors.institution} />
             </div>
 
-            {/* Cargo (Opcional) */}
             <div className="space-y-2">
               <Label htmlFor="role">Cargo/Função</Label>
               <Input
@@ -198,10 +192,8 @@ const QuasarRegistration = () => {
               />
             </div>
 
-            {/* Modalidade */}
             <div className="space-y-2">
               <Label htmlFor="participation" className={errors.participation ? "text-red-500" : ""}>Modalidade de Participação *</Label>
-              {/* ID adicionado na div para servir de âncora para o scroll */}
               <div id="participation">
                 <Select
                   value={formData.participation}
@@ -223,7 +215,6 @@ const QuasarRegistration = () => {
               <ErrorMessage message={errors.participation} />
             </div>
 
-            {/* Mensagem */}
             <div className="space-y-2">
               <Label htmlFor="message">Mensagem (opcional)</Label>
               <Textarea
