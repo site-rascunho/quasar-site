@@ -141,9 +141,9 @@ const QuasarRegistration = () => {
                   <SelectValue placeholder="Selecione uma opção" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="presencial">Presencial</SelectItem>
-                  <SelectItem value="online">Online</SelectItem>
-                  <SelectItem value="ambos">Ambos (se disponível)</SelectItem>
+                  <SelectItem value="Presencial">Presencial</SelectItem>
+                  <SelectItem value="Online">Online</SelectItem>
+                  <SelectItem value="Ambos (se disponível)">Ambos (se disponível)</SelectItem>
                 </SelectContent>
               </Select>
             </div>
