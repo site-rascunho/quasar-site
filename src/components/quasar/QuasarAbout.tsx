@@ -1,29 +1,42 @@
+import React from 'react';
+
 const QuasarAbout = () => {
   return (
     <section id="sobre" className="py-24 bg-background">
       <div className="container mx-auto px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-light text-foreground mb-8">
+        <div className="max-w-4xl mx-auto text-justify">
+          <h2 className="text-3xl md:text-4xl font-light text-foreground text-center mb-8">
             Sobre o Evento
           </h2>
           <div className="space-y-6 text-muted-foreground leading-relaxed">
             <p>
-              O II Encontro Quasar marca a <strong className="text-foreground">inauguração do Centro Internacional 
-              de Computação Quântica (CIQUANTA)</strong>, uma iniciativa apoiada pelo Governo Federal 
-              Brasileiro com um investimento inicial de US$ 20 milhões, com recursos adicionais 
-              destinados a infraestrutura, laboratórios, programas de pesquisadores e construção 
-              de hotel no local.
+              O II Encontro Quasar será realizado em João Pessoa (PB), na Universidade Federal da Paraíba (UFPB). 
+              Nesta segunda edição, o evento consolida o Encontro Quasar como um espaço de formação, debate técnico 
+              e articulação científica em tecnologias quânticas, acompanhando a rápida expansão da área no cenário 
+              nacional e internacional e conectando pesquisa, capacitação e construção de redes.
             </p>
             <p>
-              O evento terá duração de <strong className="text-foreground">2 dias</strong>, reunindo um público amplo — 
-              esperamos <strong className="text-foreground">1.500 participantes presenciais</strong> e mais de 
-              <strong className="text-foreground"> 5.000 online</strong> — incluindo autoridades governamentais, 
-              parceiros da indústria e pesquisadores de diversas instituições.
+              Esta edição se insere diretamente no fortalecimento do ecossistema local de computação quântica, 
+              em diálogo com iniciativas estratégicas como o CIQUANTA (International Centre for Quantum Computing), 
+              que vem impulsionando infraestrutura, colaboração e visibilidade internacional para a pesquisa na Paraíba. 
+              No mesmo espírito, o evento também se articula com a Liga de Computação Quântica (Liga), ampliando o 
+              engajamento de estudantes e jovens pesquisadores, organizando trilhas de aprendizagem, atividades 
+              formativas e espaços de participação ativa ao longo da programação.
             </p>
             <p>
-              Representantes de organizações como <strong className="text-foreground">Amazon, Microsoft, 
-              China Electronics Technology Group Corporation</strong> e o <strong className="text-foreground">Suzhou 
-              Quantum Center</strong> confirmaram participação.
+              A realização do II Encontro Quasar é resultado direto da experiência bem-sucedida da primeira edição, 
+              que aproximou pesquisadores, estudantes e profissionais de diferentes instituições e áreas relacionadas 
+              às tecnologias quânticas. A partir desse legado, o evento amplia seu escopo ao reunir temas atuais, 
+              abordagens interdisciplinares e discussões que conectam fundamentos teóricos, métodos de implementação, 
+              software e aplicações práticas, com foco em desafios reais de pesquisa e desenvolvimento.
+            </p>
+            <p>
+              Ao dar continuidade a essa trajetória, o II Encontro Quasar fortalece a integração entre grupos de 
+              pesquisa, estimula a produção científica e a formação avançada (incluindo projetos de pós-doutorado, 
+              artigos e trabalhos de conclusão), e amplia o interesse da comunidade acadêmica e do público em geral 
+              por tecnologias quânticas. Com isso, contribui de forma concreta para a consolidação de João Pessoa 
+              como um polo nacional de referência na área, alinhado às novas oportunidades de cooperação científica 
+              e inovação.
             </p>
           </div>
         </div>

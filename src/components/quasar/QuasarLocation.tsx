@@ -16,8 +16,8 @@ const QuasarLocation = () => {
             </p>
           </div>
           <p className="text-muted-foreground">
-            Av. João Cirilo da Silva, s/n - Jardim Oceania<br />
-            João Pessoa - PB, 58037-000
+            Av. João Cirilo da Silva, s/n - Altiplano Cabo Branco<br />
+            João Pessoa - PB, 58046-010
           </p>
         </div>
 
@@ -25,7 +25,7 @@ const QuasarLocation = () => {
         <div className="max-w-4xl mx-auto">
           <div className="aspect-video w-full bg-muted overflow-hidden">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.5867723982897!2d-34.836486!3d-7.084722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ace8f9e1c7e8ed%3A0x3d3a8f9e1c7e8ed!2sEsta%C3%A7%C3%A3o%20Ci%C3%AAncia%2C%20Cultura%20e%20Artes!5e0!3m2!1spt-BR!2sbr!4v1699999999999!5m2!1spt-BR!2sbr"
+              src="https://maps.google.com/maps?q=Esta%C3%A7%C3%A3o+Cabo+Branco+-+Ci%C3%AAncia,+Cultura+e+Artes,+Jo%C3%A3o+Pessoa&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
