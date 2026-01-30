@@ -144,6 +144,7 @@ const QuasarRegistration = () => {
             <div className="space-y-2">
               <Label htmlFor="participation">Modalidade de Participação *</Label>
               <Select
+                required
                 value={formData.participation}
                 onValueChange={(value) => setFormData({ ...formData, participation: value })}
               >
