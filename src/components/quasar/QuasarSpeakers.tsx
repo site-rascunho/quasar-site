@@ -7,8 +7,8 @@ import fernandoBrandao from "@/assets/speakers/fernando-brandao.jpg";
 import amirCaldeira from "@/assets/speakers/amir-caldeira.jpg";
 import renatoPortugal from "@/assets/speakers/renato-portugal.jpg";
 import MarinaAnsanelli from '@/assets/speakers/marina-ansanelli.jpeg';
-import FedericoHolik from '@/assets/speakers/daniel-moraes.jpeg'; // Ajuste o nome do arquivo
-import DanielHaro from '@/assets/speakers/federico-holik.jpeg'; // Ajuste o nome do arquivo
+import FedericoHolik from '@/assets/speakers/federico-holik.jpeg'; // Ajuste o nome do arquivo
+import DanielHaro from '@/assets/speakers/daniel-moraes.jpeg'; // Ajuste o nome do arquivo
 
 interface Speaker {
   id: number;
@@ -66,7 +66,7 @@ const speakers: Speaker[] = [
     title: "PhD Student",
     institution: "Perimeter Institute",
     image: FedericoHolik,
-    bio: "Pesquisadora em Fundamentos Quânticos e Inferência Causal. Recebedora do Emmy Noether Emerging Talent Fund.",
+    bio: "Doutorado em Física pela Universidade de Buenos Aires. Especialista em Informação Quântica, Fundamentos da Mecânica Quântica e Lógica Quântica. Atua como investigador no CONICET (Argentina).",
   },
   {
     id: 7,
