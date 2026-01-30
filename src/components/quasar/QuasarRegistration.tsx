@@ -21,6 +21,10 @@ const FIELD_IDS = {
 const QuasarRegistration = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Estado para armazenar os erros de validação
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,19 +34,49 @@ const QuasarRegistration = () => {
     message: ""
   });
 
+  // Função de validação
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!formData.name.trim()) newErrors.name = "Nome é obrigatório.";
+    if (!formData.email.trim()) {
+      newErrors.email = "E-mail é obrigatório.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "E-mail inválido.";
+    }
+    if (!formData.institution.trim()) newErrors.institution = "Instituição é obrigatória.";
+    if (!formData.participation) newErrors.participation = "Selecione uma modalidade.";
+
+    setErrors(newErrors);
+    return newErrors;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // --- CORREÇÃO: Validação Manual da Modalidade ---
-    if (!formData.participation) {
-      toast({
-        title: "Campo obrigatório",
-        description: "Por favor, selecione uma modalidade de participação.",
-        variant: "destructive"
-      });
+    // Executa a validação
+    const currentErrors = validate();
+
+    // Se houver erros, interrompe o envio e faz o scroll
+    if (Object.keys(currentErrors).length > 0) {
+      // Pega o primeiro campo com erro
+      const firstErrorField = Object.keys(currentErrors)[0];
+      const element = document.getElementById(firstErrorField);
+
+      if (element) {
+        // Calcula a posição para scrollar com um pouco de folga (offset)
+        const yOffset = -120; // Ajuste para não ficar colado no topo ou embaixo do menu
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+        window.scrollTo({ top: y, behavior: 'smooth' });
+        
+        // Tenta focar se for um input
+        if (element.tagName === 'INPUT') {
+            element.focus();
+        }
+      }
       return;
     }
-    // ------------------------------------------------
 
     setIsSubmitting(true);
 
@@ -74,6 +108,7 @@ const QuasarRegistration = () => {
         participation: "",
         message: ""
       });
+      setErrors({}); // Limpa erros após sucesso
 
     } catch (error) {
       console.error("Erro ao enviar:", error);
@@ -87,6 +122,12 @@ const QuasarRegistration = () => {
     }
   };
 
+  // Componente auxiliar para exibir a mensagem de erro
+  const ErrorMessage = ({ message }: { message?: string }) => {
+    if (!message) return null;
+    return <span className="text-red-500 text-xs mt-1 block font-medium">{message}</span>;
+  };
+
   return (
     <section id="inscricao" className="py-24 bg-background">
       <div className="container mx-auto px-6">
@@ -98,41 +139,55 @@ const QuasarRegistration = () => {
             Registre seu interesse em participar do II Encontro Quasar
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+            
+            {/* Nome */}
             <div className="space-y-2">
-              <Label htmlFor="name">Nome Completo *</Label>
+              <Label htmlFor="name" className={errors.name ? "text-red-500" : ""}>Nome Completo (1) *</Label>
               <Input
                 id="name"
-                required
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="bg-background border-border"
+                onChange={(e) => {
+                  setFormData({ ...formData, name: e.target.value });
+                  if (errors.name) setErrors({ ...errors, name: "" });
+                }}
+                className={errors.name ? "border-red-500 focus-visible:ring-red-500" : "bg-background border-border"}
               />
+              <ErrorMessage message={errors.name} />
             </div>
 
+            {/* Email */}
             <div className="space-y-2">
-              <Label htmlFor="email">E-mail *</Label>
+              <Label htmlFor="email" className={errors.email ? "text-red-500" : ""}>E-mail *</Label>
               <Input
                 id="email"
                 type="email"
-                required
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="bg-background border-border"
+                onChange={(e) => {
+                  setFormData({ ...formData, email: e.target.value });
+                  if (errors.email) setErrors({ ...errors, email: "" });
+                }}
+                className={errors.email ? "border-red-500 focus-visible:ring-red-500" : "bg-background border-border"}
               />
+              <ErrorMessage message={errors.email} />
             </div>
 
+            {/* Instituição */}
             <div className="space-y-2">
-              <Label htmlFor="institution">Instituição/Empresa *</Label>
+              <Label htmlFor="institution" className={errors.institution ? "text-red-500" : ""}>Instituição/Empresa *</Label>
               <Input
                 id="institution"
-                required
                 value={formData.institution}
-                onChange={(e) => setFormData({ ...formData, institution: e.target.value })}
-                className="bg-background border-border"
+                onChange={(e) => {
+                  setFormData({ ...formData, institution: e.target.value });
+                  if (errors.institution) setErrors({ ...errors, institution: "" });
+                }}
+                className={errors.institution ? "border-red-500 focus-visible:ring-red-500" : "bg-background border-border"}
               />
+              <ErrorMessage message={errors.institution} />
             </div>
 
+            {/* Cargo (Opcional) */}
             <div className="space-y-2">
               <Label htmlFor="role">Cargo/Função</Label>
               <Input
@@ -143,23 +198,32 @@ const QuasarRegistration = () => {
               />
             </div>
 
+            {/* Modalidade */}
             <div className="space-y-2">
-              <Label htmlFor="participation">Modalidade de Participação *</Label>
-              <Select
-                value={formData.participation}
-                onValueChange={(value) => setFormData({ ...formData, participation: value })}
-              >
-                <SelectTrigger className="bg-background border-border">
-                  <SelectValue placeholder="Selecione uma opção" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Presencial">Presencial</SelectItem>
-                  <SelectItem value="Online">Online</SelectItem>
-                  <SelectItem value="Ambos">Ambos (se disponível)</SelectItem>
-                </SelectContent>
-              </Select>
+              <Label htmlFor="participation" className={errors.participation ? "text-red-500" : ""}>Modalidade de Participação *</Label>
+              {/* ID adicionado na div para servir de âncora para o scroll */}
+              <div id="participation">
+                <Select
+                  value={formData.participation}
+                  onValueChange={(value) => {
+                    setFormData({ ...formData, participation: value });
+                    if (errors.participation) setErrors({ ...errors, participation: "" });
+                  }}
+                >
+                  <SelectTrigger className={errors.participation ? "border-red-500 focus:ring-red-500" : "bg-background border-border"}>
+                    <SelectValue placeholder="Selecione uma opção" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Presencial">Presencial</SelectItem>
+                    <SelectItem value="Online">Online</SelectItem>
+                    <SelectItem value="Ambos">Ambos (se disponível)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <ErrorMessage message={errors.participation} />
             </div>
 
+            {/* Mensagem */}
             <div className="space-y-2">
               <Label htmlFor="message">Mensagem (opcional)</Label>
               <Textarea
