@@ -7,15 +7,18 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 
 // --- CONFIGURAÇÃO DO GOOGLE FORMS ---
+// 1. Coloque a URL de "action" do seu formulário aqui.
+//    (Pegue o link de visualização do form e troque '/viewform' por '/formResponse')
 const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe3BVoAk0HBdj7NXX_6mxuwoTFlIQNBEYltZj59IVSFFeH7xw/formResponse";
 
+// 2. Coloque os IDs dos campos (entry.XXXXXX) que você pegou no link preenchido
 const FIELD_IDS = {
-  name: "entry.1506848749",
-  email: "entry.1884448240",
-  institution: "entry.618501221",
-  role: "entry.688746124",
-  participation: "entry.1209571215",
-  message: "entry.618321684"
+  name: "entry.1506848749",        // Substitua pelo ID do campo Nome
+  email: "entry.1884448240",       // Substitua pelo ID do campo Email
+  institution: "entry.618501221", // Substitua pelo ID do campo Instituição
+  role: "entry.688746124",        // Substitua pelo ID do campo Cargo
+  participation: "entry.1209571215", // Substitua pelo ID da Modalidade
+  message: "entry.618321684"      // Substitua pelo ID da Mensagem
 };
 
 const QuasarRegistration = () => {
@@ -26,28 +29,16 @@ const QuasarRegistration = () => {
     email: "",
     institution: "",
     role: "",
-    participation: "", // Começa vazio
+    participation: "",
     message: ""
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // --- VALIDAÇÃO MANUAL ---
-    // Verifica se os campos obrigatórios estão vazios.
-    // O 'formData.participation' vazio impedirá o envio.
-    if (!formData.name.trim() || !formData.email.trim() || !formData.institution.trim() || !formData.participation) {
-      toast({
-        title: "Campos obrigatórios em falta",
-        description: "Por favor, preencha Nome, E-mail, Instituição e selecione a Modalidade de Participação.",
-        variant: "destructive",
-      });
-      return; // PARA AQUI se a validação falhar
-    }
-
     setIsSubmitting(true);
 
     try {
+      // Criação dos dados no formato que o Google Forms espera
       const googleFormData = new FormData();
       googleFormData.append(FIELD_IDS.name, formData.name);
       googleFormData.append(FIELD_IDS.email, formData.email);
@@ -56,19 +47,23 @@ const QuasarRegistration = () => {
       googleFormData.append(FIELD_IDS.participation, formData.participation);
       googleFormData.append(FIELD_IDS.message, formData.message);
 
+      // Envio para o Google Forms
+      // mode: "no-cors" é necessário porque o Google não retorna um cabeçalho CORS padrão.
+      // Isso significa que não conseguiremos ler a resposta de sucesso do servidor,
+      // mas o envio funcionará se os IDs estiverem corretos.
       await fetch(FORM_URL, {
         method: "POST",
         mode: "no-cors",
         body: googleFormData,
       });
 
+      // Assumimos sucesso se não houve erro de rede
       toast({
         title: "Pré-inscrição recebida!",
         description: "Seus dados foram salvos com sucesso.",
-        variant: "default",
       });
 
-      // Limpar formulário após sucesso
+      // Limpar formulário
       setFormData({
         name: "",
         email: "",
@@ -106,10 +101,10 @@ const QuasarRegistration = () => {
               <Label htmlFor="name">Nome Completo *</Label>
               <Input
                 id="name"
+                required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="bg-background border-border"
-                placeholder="Seu nome completo"
               />
             </div>
 
@@ -118,10 +113,10 @@ const QuasarRegistration = () => {
               <Input
                 id="email"
                 type="email"
+                required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="bg-background border-border"
-                placeholder="seu@email.com"
               />
             </div>
 
@@ -129,10 +124,10 @@ const QuasarRegistration = () => {
               <Label htmlFor="institution">Instituição/Empresa *</Label>
               <Input
                 id="institution"
+                required
                 value={formData.institution}
                 onChange={(e) => setFormData({ ...formData, institution: e.target.value })}
                 className="bg-background border-border"
-                placeholder="Onde você estuda ou trabalha"
               />
             </div>
 
@@ -143,11 +138,9 @@ const QuasarRegistration = () => {
                 value={formData.role}
                 onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                 className="bg-background border-border"
-                placeholder="Ex: Estudante, Pesquisador..."
               />
             </div>
 
-            {/* O CAMPO SELECT DA MODALIDADE */}
             <div className="space-y-2">
               <Label htmlFor="participation">Modalidade de Participação *</Label>
               <Select
