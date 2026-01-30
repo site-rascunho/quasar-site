@@ -6,6 +6,21 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 
+// --- CONFIGURAÇÃO DO GOOGLE FORMS ---
+// 1. Coloque a URL de "action" do seu formulário aqui.
+//    (Pegue o link de visualização do form e troque '/viewform' por '/formResponse')
+const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe3BVoAk0HBdj7NXX_6mxuwoTFlIQNBEYltZj59IVSFFeH7xw/formResponse";
+
+// 2. Coloque os IDs dos campos (entry.XXXXXX) que você pegou no link preenchido
+const FIELD_IDS = {
+  name: "entry.1506848749",        // Substitua pelo ID do campo Nome
+  email: "entry.1884448240",       // Substitua pelo ID do campo Email
+  institution: "entry.618501221", // Substitua pelo ID do campo Instituição
+  role: "entry.688746124",        // Substitua pelo ID do campo Cargo
+  participation: "entry.1209571215", // Substitua pelo ID da Modalidade
+  message: "entry.618321684"      // Substitua pelo ID da Mensagem
+};
+
 const QuasarRegistration = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -22,23 +37,52 @@ const QuasarRegistration = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      // Criação dos dados no formato que o Google Forms espera
+      const googleFormData = new FormData();
+      googleFormData.append(FIELD_IDS.name, formData.name);
+      googleFormData.append(FIELD_IDS.email, formData.email);
+      googleFormData.append(FIELD_IDS.institution, formData.institution);
+      googleFormData.append(FIELD_IDS.role, formData.role);
+      googleFormData.append(FIELD_IDS.participation, formData.participation);
+      googleFormData.append(FIELD_IDS.message, formData.message);
 
-    toast({
-      title: "Pré-inscrição recebida!",
-      description: "Entraremos em contato em breve com mais informações.",
-    });
+      // Envio para o Google Forms
+      // mode: "no-cors" é necessário porque o Google não retorna um cabeçalho CORS padrão.
+      // Isso significa que não conseguiremos ler a resposta de sucesso do servidor,
+      // mas o envio funcionará se os IDs estiverem corretos.
+      await fetch(FORM_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: googleFormData,
+      });
 
-    setFormData({
-      name: "",
-      email: "",
-      institution: "",
-      role: "",
-      participation: "",
-      message: ""
-    });
-    setIsSubmitting(false);
+      // Assumimos sucesso se não houve erro de rede
+      toast({
+        title: "Pré-inscrição recebida!",
+        description: "Seus dados foram salvos com sucesso.",
+      });
+
+      // Limpar formulário
+      setFormData({
+        name: "",
+        email: "",
+        institution: "",
+        role: "",
+        participation: "",
+        message: ""
+      });
+
+    } catch (error) {
+      console.error("Erro ao enviar:", error);
+      toast({
+        title: "Erro no envio",
+        description: "Houve um problema ao enviar sua inscrição. Tente novamente.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -107,9 +151,9 @@ const QuasarRegistration = () => {
                   <SelectValue placeholder="Selecione uma opção" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="presencial">Presencial</SelectItem>
-                  <SelectItem value="online">Online</SelectItem>
-                  <SelectItem value="ambos">Ambos (se disponível)</SelectItem>
+                  <SelectItem value="Presencial">Presencial</SelectItem>
+                  <SelectItem value="Online">Online</SelectItem>
+                  <SelectItem value="Ambos">Ambos (se disponível)</SelectItem>
                 </SelectContent>
               </Select>
             </div>
