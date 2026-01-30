@@ -1,6 +1,16 @@
 import estacaoCiencias from "@/assets/estacao-ciencias.jpg";
 
 const QuasarHero = () => {
+  
+  // Função de scroll suave local
+  const scrollToRegistration = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const element = document.getElementById("inscricao");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -23,9 +33,12 @@ const QuasarHero = () => {
         <p className="text-lg md:text-xl text-white/80 font-light max-w-2xl mx-auto mb-8 reveal-delayed">
           Inauguração do Centro Internacional de Computação Quântica (CIQUANTA)
         </p>
+        
+        {/* Botão corrigido com manipulador de clique */}
         <a 
           href="#inscricao"
-          className="inline-block bg-white text-foreground px-8 py-3 text-sm font-medium hover:bg-white/90 transition-colors duration-200 reveal-delayed"
+          onClick={scrollToRegistration}
+          className="inline-block bg-white text-foreground px-8 py-3 text-sm font-medium hover:bg-white/90 transition-colors duration-200 reveal-delayed cursor-pointer"
         >
           Inscreva-se
         </a>
