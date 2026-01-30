@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 
 // TROQUE pelo seu ID:
-const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe3BVoAk0HBdj7NXX_6mxuwoTFlIQNBEYltZj59IVSFFeH7xw/formResponse";
+const GOOGLE_FORM_URL = "https://forms.gle/RZNX6r33Vn5hmhTp7";
 
 // TROQUE pelos entry.X de cada campo do seu formulário Google
 const ENTRY = {
