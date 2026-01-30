@@ -98,7 +98,7 @@ const QuasarRegistration = () => {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="name">Nome Completo (1) *</Label>
+              <Label htmlFor="name">Nome Completo *</Label>
               <Input
                 id="name"
                 required
