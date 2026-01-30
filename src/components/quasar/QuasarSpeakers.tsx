@@ -6,9 +6,9 @@ import aleksKissinger from "@/assets/speakers/aleks-kissinger.jpg";
 import fernandoBrandao from "@/assets/speakers/fernando-brandao.jpg";
 import amirCaldeira from "@/assets/speakers/amir-caldeira.jpg";
 import renatoPortugal from "@/assets/speakers/renato-portugal.jpg";
-import MarinaAnsanelli from '@/assets/speakers/marina-ansanelli.jpg';
-import FedericoHolik from '@/assets/speakers/daniel-moraes.jpg'; // Ajuste o nome do arquivo
-import DanielHaro from '@/assets/speakers/federico-holik.jpg'; // Ajuste o nome do arquivo
+import MarinaAnsanelli from '@/assets/speakers/marina-ansanelli.jpeg';
+import FedericoHolik from '@/assets/speakers/daniel-moraes.jpeg'; // Ajuste o nome do arquivo
+import DanielHaro from '@/assets/speakers/federico-holik.jpeg'; // Ajuste o nome do arquivo
 
 interface Speaker {
   id: number;
