@@ -162,7 +162,7 @@ const QuasarSchedule = () => {
                   <img 
                     src={QuasarLogo} 
                     alt="Quasar Logo" 
-                    className="w-7 h-7 object-contain" 
+                    className="w-10 h-10 object-contain" 
                   />
                 ) : (
                   <IconComponent className="w-6 h-6" />
