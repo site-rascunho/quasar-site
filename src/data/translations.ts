@@ -78,7 +78,7 @@ export const translations = {
     },
     hero: {
       dateLocation: "July/August 2026 • João Pessoa",
-      titlePrefix: "II Quasar",
+      titlePrefix: "2nd Quasar",
       titleHighlight: "Meeting",
       subtitle: "Inauguration of the International Centre for Quantum Computing (CIQUANTA)",
       cta: "SECURE YOUR SPOT",
@@ -86,53 +86,53 @@ export const translations = {
     },
     about: {
       title: "About the Event",
-      p1: "The <strong>II Quasar Meeting</strong> will be held in João Pessoa (PB), at the Estação Ciências auditorium. In this second edition, the event consolidates itself as a <strong>space for training, technical debate, and scientific articulation</strong> in quantum technologies, following the <strong>rapid expansion of the area</strong> nationally and internationally.",
-      p2: "This edition is directly inserted in the <strong>strengthening of the local quantum computing ecosystem</strong>, in dialogue with strategic initiatives such as CIQUANTA (International Centre for Quantum Computing), which has been boosting <strong>infrastructure, collaboration, and international visibility</strong> for research in Paraíba.",
-      p3: "The realization of the II Quasar Meeting is a direct result of the successful experience of the first edition, which brought together researchers, students, and professionals from different institutions and areas related to quantum technologies.",
-      p4: "By continuing this trajectory, the II Quasar Meeting strengthens the <strong>integration between research groups</strong>, stimulates scientific production and advanced training, and expands the interest of the academic community and the general public in quantum technologies."
+      p1: "The <strong>2nd Quasar Meeting</strong> will be hosted at the Estação Ciências Auditorium in João Pessoa (PB). This edition establishes the event as a premier <strong>hub for education, technical debate, and scientific collaboration</strong> in quantum technologies, keeping pace with the <strong>rapid global expansion of the field</strong> while connecting research and professional networks.",
+      p2: "This event plays a key role in <strong>strengthening the local quantum computing ecosystem</strong>, aligned with strategic initiatives like CIQUANTA (International Centre for Quantum Computing), which drives <strong>infrastructure, collaboration, and international visibility</strong> for research in Paraíba.",
+      p3: "The <strong>2nd Quasar Meeting</strong> builds directly on the success of the inaugural edition, which connected researchers, students, and professionals from diverse institutions and fields within quantum technology.",
+      p4: "Continuing this momentum, the event strengthens <strong>collaboration between research groups</strong>, fosters scientific output and advanced training, and broadens engagement with quantum technologies among both the academic community and the general public."
     },
     speakers: {
       title: "Speakers (Preliminary)",
       role: {
         professor: "Professor Emeritus",
         head: "Head of Quantum Algorithms",
-        researcher: "Lead Researcher",
+        researcher: "Senior Researcher",
         student: "PhD Researcher"
       }
     },
     schedule: {
       badge: "Official Agenda 2026",
       title: "Schedule",
-      description: "Check out the complete schedule of talks, panels, and strategic activities planned for the event.",
+      description: "Explore the full schedule of talks, panels, and strategic activities planned for the event.",
       day1: "Day 1",
       day2: "Day 2",
       items: {
         checkin: "Check-in",
         opening: "Quasar: Institutional Opening",
-        talk: "Talk",
+        talk: "Keynote / Talk",
         lunch: "Lunch",
-        break: "Coffee break",
-        panel: "Discussion Panel",
-        closing: "Quasar: Closing and Next Steps"
+        break: "Coffee Break",
+        panel: "Panel Discussion",
+        closing: "Quasar: Closing Remarks & Next Steps"
       }
     },
     location: {
       title: "Event Location",
-      place: "Station of Science, Culture and Arts"
+      place: "Science, Culture and Arts Station"
     },
     registration: {
       title: "Registration",
-      description: "Register your interest in participating in the II Quasar Meeting.",
+      description: "Register your interest in the 2nd Quasar Meeting.",
       loading: "Loading form...",
-      available: "Registration Available",
-      fallbackText: "To ensure the best experience and security, access the registration form directly on the official platform.",
-      button: "Register on Even3",
-      secure: "Secure environment processed by Even3. Your data is protected."
+      available: "Registration Open",
+      fallbackText: "To ensure the best experience and security, please access the registration form directly on the official platform.",
+      button: "Register via Even3",
+      secure: "Secure transaction processed by Even3. Your data is protected."
     },
     footer: {
       support: "Support",
       organizedBy: "Organized by",
-      rights: "© 2026 II Quasar Meeting. All rights reserved."
+      rights: "© 2026 2nd Quasar Meeting. All rights reserved."
     }
   }
 };
