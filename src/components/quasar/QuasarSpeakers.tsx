@@ -24,6 +24,14 @@ interface Speaker {
 
 const speakers: Speaker[] = [
   {
+    id: 1,
+    name: "Samson Abramsky",
+    title: "Pesquisador",
+    institution: "Oxford",
+    image: SamsonAbramsky,
+    bio: "...",
+  },
+  {
     id: 2,
     name: "Fernando Brandão",
     title: "Professor de Física Teórica",
@@ -40,6 +48,14 @@ const speakers: Speaker[] = [
     bio: "Amir Caldeira é Professor Emérito da Universidade Estadual de Campinas (UNICAMP) e um dos físicos brasileiros mais citados internacionalmente. É conhecido pelo modelo Caldeira-Leggett, desenvolvido com Anthony Leggett (Nobel de Física 2003), que descreve a dissipação em sistemas quânticos. Suas contribuições foram fundamentais para o entendimento da decoerência quântica."
   },
   {
+    id: 4,
+    name: "Rafael Chaves",
+    title: "...",
+    institution: "IIP",
+    image: RafaelChaves,
+    bio: "...",
+  },
+  {
     id: 5,
     name: "Aleks Kissinger",
     title: "Professor Associado",
@@ -54,6 +70,14 @@ const speakers: Speaker[] = [
     institution: "LNCC",
     image: renatoPortugal,
     bio: "Renato Portugal é Pesquisador Titular do Laboratório Nacional de Computação Científica (LNCC). É autor de livros sobre computação quântica e caminhadas quânticas, sendo uma referência internacional na área. Suas pesquisas em algoritmos quânticos contribuíram para o avanço da computação quântica no Brasil."
+  },
+  {
+    id: 9,
+    name: "Erico Teixeira",
+    title: "Pesquisador",
+    institution: "Venturus",
+    image: EricoTexeira,
+    bio: "Investigador em Computação Quântica, com doutoramento em Química e mestrado em Ciência da Computação pela UFPE. Especialista em Química Computacional e Algoritmos Quânticos.",
   },
   {
     id: 8,
@@ -79,30 +103,7 @@ const speakers: Speaker[] = [
     image: DanielHaro,
     bio: "Líder de Tecnologias Emergentes no Venturus. Foca na preparação de empresas para a era quântica (Quantum Readiness) e na construção de pontes entre a investigação científica e o mercado.",
   },
-  {
-    id: 9,
-    name: "Erico Teixeira",
-    title: "Pesquisador",
-    institution: "Venturus",
-    image: EricoTexeira,
-    bio: "Investigador em Computação Quântica, com doutoramento em Química e mestrado em Ciência da Computação pela UFPE. Especialista em Química Computacional e Algoritmos Quânticos.",
-  },
-  {
-    id: 1,
-    name: "Samson Abramsky",
-    title: "Pesquisador",
-    institution: "Oxford",
-    image: SamsonAbramsky,
-    bio: "...",
-  },
-  {
-    id: 4,
-    name: "Rafael Chaves",
-    title: "...",
-    institution: "IIP",
-    image: RafaelChaves,
-    bio: "...",
-  }
+
 ];
 
 const QuasarSpeakers = () => {
