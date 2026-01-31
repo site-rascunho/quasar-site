@@ -34,34 +34,34 @@ const schedule: DaySchedule[] = [
     day: "Dia 1",
     date: "Julho/Agosto 2026",
     items: [
-      { time: "08:00", title: "Credenciamento e Café de Boas-vindas", type: "break" },
-      { time: "09:45", title: "Quasar: Abertura Institucional e Visão de Futuro", type: "ceremony" },
-      { time: "10:30", title: "Palestra 1: Inovação em Escala", speaker: "Ana Silva", type: "talk" },
-      { time: "11:15", title: "Palestra 2: Arquitetura de Software Moderna", speaker: "Carlos Souza", type: "talk" },
-      { time: "12:00", title: "Almoço e Networking", type: "break" },
-      { time: "14:00", title: "Palestra 3", speaker: "...", type: "talk" },
-      { time: "14:45", title: "Palestra 4", speaker: "...", type: "talk" },
+      { time: "08:00", title: "Credenciamento", type: "break" },
+      { time: "09:45", title: "Quasar: Abertura Institucional", type: "ceremony" },
+      { time: "10:30", title: "Palestra 1: ", speaker: "Ana Silva", type: "talk" },
+      { time: "11:15", title: "Palestra 2: ", speaker: "Carlos Souza", type: "talk" },
+      { time: "12:00", title: "Almoço", type: "break" },
+      { time: "14:00", title: "Palestra 3: ", speaker: "...", type: "talk" },
+      { time: "14:45", title: "Palestra 4: ", speaker: "...", type: "talk" },
       { time: "15:30", title: "Coffee break", type: "break" },
-      { time: "16:00", title: "Palestra 5", speaker: "...", type: "talk" },
-      { time: "16:45", title: "Palestra 6", speaker: "...", type: "talk" },
-      { time: "17:30", title: "Painel de Discussão: O Futuro da Tecnologia", type: "networking" },
+      { time: "16:00", title: "Palestra 5: ", speaker: "...", type: "talk" },
+      { time: "16:45", title: "Palestra 6: ", speaker: "...", type: "talk" },
+      { time: "17:30", title: "Painel de Discussão", type: "networking" },
     ]
   },
   {
     day: "Dia 2",
     date: "Julho/Agosto 2026",
     items: [
-      { time: "09:00", title: "Café da manhã e Conexões", type: "break" },
-      { time: "09:45", title: "Palestra 1", speaker: "...", type: "talk" },
-      { time: "10:30", title: "Palestra 2", speaker: "...", type: "talk" },
-      { time: "11:15", title: "Palestra 3", speaker: "...", type: "talk" },
+      { time: "09:00", title: "Credenciamento", type: "break" },
+      { time: "09:45", title: "Palestra 1: ", speaker: "...", type: "talk" },
+      { time: "10:30", title: "Palestra 2: ", speaker: "...", type: "talk" },
+      { time: "11:15", title: "Palestra 3: ", speaker: "...", type: "talk" },
       { time: "12:00", title: "Almoço", type: "break" },
-      { time: "14:00", title: "Palestra 4", speaker: "...", type: "talk" },
-      { time: "15:45", title: "Palestra 5", speaker: "...", type: "talk" },
+      { time: "14:00", title: "Palestra 4: ", speaker: "...", type: "talk" },
+      { time: "15:45", title: "Palestra 5: ", speaker: "...", type: "talk" },
       { time: "15:30", title: "Coffee break", type: "break" },
-      { time: "16:00", title: "Palestra 6", speaker: "...", type: "talk" },
-      { time: "16:45", title: "Palestra 7", speaker: "...", type: "talk" },
-      { time: "17:30", title: "Palestra 8", speaker: "...", type: "talk" },
+      { time: "16:00", title: "Palestra 6: ", speaker: "...", type: "talk" },
+      { time: "16:45", title: "Palestra 7: ", speaker: "...", type: "talk" },
+      { time: "17:30", title: "Palestra 8: ", speaker: "...", type: "talk" },
       { time: "18:15", title: "Quasar: Encerramento e Próximos Passos", type: "ceremony" },
     ]
   }
@@ -99,15 +99,15 @@ const QuasarSchedule = () => {
     const isQuasarItem = item.title.toLowerCase().includes("quasar");
 
     // Estilo "Separador" para Breaks
-    if (item.type === "break") {
+if (item.type === "break") {
       return (
-        <div key={index} className="relative py-5 flex items-center justify-center group select-none">
+        <div key={index} className="relative py-6 flex items-center justify-center group select-none">
           <div className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent group-hover:via-muted-foreground/30 transition-all duration-500"></div>
-          <div className="relative z-10 bg-background/95 px-5 py-1.5 rounded-full border border-border shadow-sm flex items-center gap-3 text-sm text-muted-foreground overflow-hidden backdrop-blur-md">
-            <span className="font-mono text-xs opacity-70">{item.time}</span>
-            <div className="w-1 h-1 rounded-full bg-current opacity-50"></div>
-            <span className="uppercase tracking-wide text-xs font-medium flex items-center gap-2 overflow-hidden text-ellipsis whitespace-nowrap">
-              <Coffee className="w-3 h-3 flex-shrink-0" />
+          <div className="relative z-10 bg-secondary/30 px-10 py-3 rounded-full border border-border/60 shadow-sm flex items-center gap-4 text-muted-foreground backdrop-blur-md hover:bg-secondary/50 hover:border-primary/20 transition-all duration-300">
+            <span className="font-mono text-sm md:text-base opacity-90 font-medium text-foreground">{item.time}</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-primary/40"></div>
+            <span className="uppercase tracking-wide text-xs md:text-sm font-bold flex items-center gap-2.5 text-foreground/80">
+              <Coffee className="w-4 h-4 flex-shrink-0 text-primary/70" />
               {item.title}
             </span>
           </div>
