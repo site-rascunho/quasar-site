@@ -10,6 +10,8 @@ import MarinaAnsanelli from '@/assets/speakers/marina-ansanelli.jpeg';
 import FedericoHolik from '@/assets/speakers/federico-holik.jpeg'; 
 import DanielHaro from '@/assets/speakers/daniel-moraes.jpeg'; 
 import EricoTexeira from '@/assets/speakers/erico-texeira.jpeg';
+import SamsonAbramsky from '@/assets/speakers/samson-abramsky.jpeg';
+import RafaelChaves from '@/assets/speakers/rafael-chaves.jpeg';
 
 interface Speaker {
   id: number;
@@ -22,7 +24,7 @@ interface Speaker {
 
 const speakers: Speaker[] = [
   {
-    id: 1,
+    id: 2,
     name: "Fernando Brandão",
     title: "Professor de Física Teórica",
     institution: "Caltech / Amazon",
@@ -30,7 +32,7 @@ const speakers: Speaker[] = [
     bio: "Fernando Brandão é Professor Bren de Física Teórica no Caltech e Diretor de Pesquisa Quântica na Amazon Web Services. Seus trabalhos pioneiros em teoria de informação quântica incluem contribuições fundamentais em emaranhamento quântico, termodinâmica quântica e algoritmos quânticos. Recebeu diversos prêmios internacionais por suas contribuições à física quântica."
   },
   {
-    id: 2,
+    id: 3,
     name: "Amir Caldeira",
     title: "Professor Emérito",
     institution: "UNICAMP",
@@ -38,7 +40,7 @@ const speakers: Speaker[] = [
     bio: "Amir Caldeira é Professor Emérito da Universidade Estadual de Campinas (UNICAMP) e um dos físicos brasileiros mais citados internacionalmente. É conhecido pelo modelo Caldeira-Leggett, desenvolvido com Anthony Leggett (Nobel de Física 2003), que descreve a dissipação em sistemas quânticos. Suas contribuições foram fundamentais para o entendimento da decoerência quântica."
   },
   {
-    id: 3,
+    id: 5,
     name: "Aleks Kissinger",
     title: "Professor Associado",
     institution: "University of Oxford",
@@ -46,7 +48,7 @@ const speakers: Speaker[] = [
     bio: "Aleks Kissinger é Professor Associado de Ciência da Computação na Universidade de Oxford. É um dos criadores do ZX-calculus, uma linguagem gráfica para raciocínio sobre computação quântica. Seu trabalho em fundamentos da mecânica quântica e verificação de circuitos quânticos tem impacto significativo na área."
   },
   {
-    id: 4,
+    id: 6,
     name: "Renato Portugal",
     title: "Pesquisador Titular",
     institution: "LNCC",
@@ -54,7 +56,7 @@ const speakers: Speaker[] = [
     bio: "Renato Portugal é Pesquisador Titular do Laboratório Nacional de Computação Científica (LNCC). É autor de livros sobre computação quântica e caminhadas quânticas, sendo uma referência internacional na área. Suas pesquisas em algoritmos quânticos contribuíram para o avanço da computação quântica no Brasil."
   },
   {
-    id: 5,
+    id: 8,
     name: "Marina Ansanelli",
     title: "PhD Student",
     institution: "Perimeter Institute",
@@ -62,7 +64,7 @@ const speakers: Speaker[] = [
     bio: "Pesquisadora em Fundamentos Quânticos e Inferência Causal. Recebedora do Emmy Noether Emerging Talent Fund.",
   },
   {
-    id: 6,
+    id: 7,
     name: "Federico Holik",
     title: "Investigador Adjunto",
     institution: "UNLP",
@@ -70,7 +72,7 @@ const speakers: Speaker[] = [
     bio: "Doutorado em Física pela Universidade de Buenos Aires. Especialista em Informação Quântica, Fundamentos da Mecânica Quântica e Lógica Quântica. Atua como investigador no CONICET (Argentina).",
   },
   {
-    id: 7,
+    id: 10,
     name: "Daniel Haro",
     title: "Chefe de Tecnologias Emergentes",
     institution: "Venturus",
@@ -78,12 +80,28 @@ const speakers: Speaker[] = [
     bio: "Líder de Tecnologias Emergentes no Venturus. Foca na preparação de empresas para a era quântica (Quantum Readiness) e na construção de pontes entre a investigação científica e o mercado.",
   },
   {
-    id: 8,
+    id: 9,
     name: "Erico Teixeira",
     title: "Pesquisador",
     institution: "Venturus",
     image: EricoTexeira,
     bio: "Investigador em Computação Quântica, com doutoramento em Química e mestrado em Ciência da Computação pela UFPE. Especialista em Química Computacional e Algoritmos Quânticos.",
+  },
+  {
+    id: 1,
+    name: "Samson Abramsky",
+    title: "Pesquisador",
+    institution: "Oxford",
+    image: SamsonAbramsky,
+    bio: "...",
+  },
+  {
+    id: 4,
+    name: "Rafael Chaves",
+    title: "...",
+    institution: "IIP",
+    image: RafaelChaves,
+    bio: "...",
   }
 ];
 
@@ -103,7 +121,7 @@ const QuasarSpeakers = () => {
     <section id="palestrantes" className="py-24 bg-secondary">
       <div className="container mx-auto px-6">
         <h2 className="text-3xl md:text-4xl font-light text-foreground text-center mb-16">
-          Palestrantes Confirmados
+          Palestrantes (Preliminar)
         </h2>
 
         {/* Desktop Grid */}
