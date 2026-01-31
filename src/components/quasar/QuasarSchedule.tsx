@@ -31,7 +31,7 @@ const QuasarSchedule = () => {
       dayKey: "day1",
       date: t.hero.dateLocation.split("•")[0].trim(), // Reutiliza a data do Hero ou string fixa
       items: [
-        { time: "08:00", titleKey: "checkin", type: "break" },
+        { time: "09:00", titleKey: "checkin", type: "break" },
         { time: "09:45", titleKey: "opening", type: "ceremony" },
         { time: "10:30", titleKey: "talk", speaker: "...", type: "talk" },
         { time: "11:15", titleKey: "talk", speaker: "...", type: "talk" },
