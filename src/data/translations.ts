@@ -87,9 +87,9 @@ export const translations = {
     },
     about: {
       title: "About the Event",
-      p1: "The <strong>2nd Quasar Meeting</strong> will be hosted at the Estação Ciências Auditorium in João Pessoa (PB). This edition establishes the event as a premier <strong>hub for education, technical debate, and scientific collaboration</strong> in quantum technologies, keeping pace with the <strong>rapid global expansion of the field</strong> while connecting research and professional networks.",
+      p1: "The <strong>II Quasar Meeting</strong> will be hosted at the Estação Ciências Auditorium in João Pessoa (PB). This edition establishes the event as a premier <strong>hub for education, technical debate, and scientific collaboration</strong> in quantum technologies, keeping pace with the <strong>rapid global expansion of the field</strong> while connecting research and professional networks.",
       p2: "This event plays a key role in <strong>strengthening the local quantum computing ecosystem</strong>, aligned with strategic initiatives like CIQUANTA (International Centre for Quantum Computing), which drives <strong>infrastructure, collaboration, and international visibility</strong> for research in Paraíba.",
-      p3: "The <strong>2nd Quasar Meeting</strong> builds directly on the success of the inaugural edition, which connected researchers, students, and professionals from diverse institutions and fields within quantum technology.",
+      p3: "The <strong>II Quasar Meeting</strong> builds directly on the success of the inaugural edition, which connected researchers, students, and professionals from diverse institutions and fields within quantum technology.",
       p4: "Continuing this momentum, the event strengthens <strong>collaboration between research groups</strong>, fosters scientific output and advanced training, and broadens engagement with quantum technologies among both the academic community and the general public."
     },
     speakers: {
@@ -124,7 +124,7 @@ export const translations = {
     },
     registration: {
       title: "Registration",
-      description: "Register your interest in the 2nd Quasar Meeting.",
+      description: "Register your interest in the II Quasar Meeting.",
       loading: "Loading form...",
       available: "Registration Open",
       fallbackText: "To ensure the best experience and security, please access the registration form directly on the official platform.",
@@ -134,7 +134,7 @@ export const translations = {
     footer: {
       support: "Support",
       organizedBy: "Organized by",
-      rights: "© 2026 2nd Quasar Meeting. All rights reserved."
+      rights: "© 2026 II Quasar Meeting. All rights reserved."
     }
   }
 };
