@@ -1,15 +1,7 @@
 import { useState } from "react";
-import { Menu, X, Globe, Check } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import logoQuasar from "@/assets/logo-quasar-branca.png";
 import logoQuasarPreta from "@/assets/logo-quasar-preta.png";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useLanguage } from "@/contexts/LanguageContext"; // Hook customizado
-import { Language } from "@/utils/translations";
 
 interface QuasarNavigationProps {
   isHeroVisible?: boolean;
@@ -17,21 +9,13 @@ interface QuasarNavigationProps {
 
 const QuasarNavigation = ({ isHeroVisible = true }: QuasarNavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { language, setLanguage, t } = useLanguage(); // Usando o contexto
 
-  // Links dinâmicos baseados na tradução
   const navLinks = [
-    { href: "#sobre", label: t.nav.about },
-    { href: "#palestrantes", label: t.nav.speakers },
-    { href: "#programacao", label: t.nav.schedule },
-    { href: "#local", label: t.nav.location },
-    { href: "#inscricao", label: t.nav.registration },
-  ];
-
-  const languages: { code: Language; label: string }[] = [
-    { code: "PT", label: "Português" },
-    { code: "EN", label: "English" },
-    { code: "ES", label: "Español" },
+    { href: "#sobre", label: "Sobre" },
+    { href: "#palestrantes", label: "Palestrantes" },
+    { href: "#programacao", label: "Programação" },
+    { href: "#local", label: "Local" },
+    { href: "#inscricao", label: "Inscrição" },
   ];
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -39,11 +23,12 @@ const QuasarNavigation = ({ isHeroVisible = true }: QuasarNavigationProps) => {
     const id = href.replace("#", "");
     const element = document.getElementById(id);
     if (element) {
+      // Ajuste o offset para descontar a altura da navbar fixa (aprox 80px)
       const yOffset = -80; 
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
-    setIsMenuOpen(false);
+    setIsMenuOpen(false); // Fecha o menu mobile ao clicar
   };
 
   return (
@@ -51,6 +36,7 @@ const QuasarNavigation = ({ isHeroVisible = true }: QuasarNavigationProps) => {
       isHeroVisible ? "bg-transparent" : "bg-background/95 backdrop-blur-sm border-b border-border"
     }`}>
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Logo */}
         <a href="#" className="flex items-center">
           <img 
             src={isHeroVisible ? logoQuasar : logoQuasarPreta} 
@@ -75,35 +61,9 @@ const QuasarNavigation = ({ isHeroVisible = true }: QuasarNavigationProps) => {
               {link.label}
             </a>
           ))}
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button 
-                className={`flex items-center gap-2 text-sm font-medium transition-colors duration-200 outline-none ${
-                  isHeroVisible 
-                    ? "text-white/90 hover:text-white" 
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                <Globe className="h-4 w-4" />
-                <span>{language}</span>
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {languages.map((lang) => (
-                <DropdownMenuItem 
-                  key={lang.code}
-                  onClick={() => setLanguage(lang.code)}
-                  className="cursor-pointer flex justify-between items-center min-w-[120px]"
-                >
-                  {lang.label}
-                  {language === lang.code && <Check className="h-4 w-4 ml-2" />}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
         </div>
 
+        {/* Mobile Menu Button */}
         <button
           className="md:hidden p-2"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -119,7 +79,7 @@ const QuasarNavigation = ({ isHeroVisible = true }: QuasarNavigationProps) => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-background border-b border-border shadow-lg">
+        <div className="md:hidden bg-background border-b border-border">
           <div className="container mx-auto px-6 py-6 space-y-4">
             {navLinks.map((link) => (
               <a
@@ -131,28 +91,6 @@ const QuasarNavigation = ({ isHeroVisible = true }: QuasarNavigationProps) => {
                 {link.label}
               </a>
             ))}
-
-            <div className="pt-4 mt-4 border-t border-border">
-              <div className="flex items-center gap-2 mb-3 text-sm font-medium text-foreground">
-                <Globe className="h-4 w-4" />
-                <span>{t.nav.language}</span>
-              </div>
-              <div className="grid grid-cols-3 gap-2">
-                {languages.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => setLanguage(lang.code)}
-                    className={`text-sm py-2 px-3 rounded-md border transition-all ${
-                      language === lang.code
-                        ? "bg-primary text-primary-foreground border-primary"
-                        : "bg-background text-muted-foreground border-input hover:bg-accent"
-                    }`}
-                  >
-                    {lang.code}
-                  </button>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       )}
