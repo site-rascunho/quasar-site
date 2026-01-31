@@ -12,6 +12,7 @@ export const translations = {
     hero: {
       dateLocation: "Julho/Agosto 2026 • João Pessoa",
       titlePrefix: "II Encontro ",
+      TitleSuffix: "",
       subtitle: "Inauguração do Centro Internacional de Computação Quântica (CIQUANTA)",
       cta: "GARANTIR PRESENÇA",
       scroll: "Descubra",
@@ -78,7 +79,8 @@ export const translations = {
     },
     hero: {
       dateLocation: "July/August 2026 • João Pessoa",
-      titlePrefix: "II        Meeting",
+      TitlePrefix: "II",          // "II"
+      TitleSuffix: "Meeting",     // "Meeting" - A imagem ficará no meio
       subtitle: "Inauguration of the International Centre for Quantum Computing (CIQUANTA)",
       cta: "SECURE YOUR SPOT",
       scroll: "Discover",
