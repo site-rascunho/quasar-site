@@ -36,8 +36,8 @@ const schedule: DaySchedule[] = [
     items: [
       { time: "08:00", title: "Credenciamento", type: "break" },
       { time: "09:45", title: "Quasar: Abertura Institucional", type: "ceremony" },
-      { time: "10:30", title: "Palestra 1: ", speaker: "Ana Silva", type: "talk" },
-      { time: "11:15", title: "Palestra 2: ", speaker: "Carlos Souza", type: "talk" },
+      { time: "10:30", title: "Palestra 1: ", speaker: "...", type: "talk" },
+      { time: "11:15", title: "Palestra 2: ", speaker: "...", type: "talk" },
       { time: "12:00", title: "Almoço", type: "break" },
       { time: "14:00", title: "Palestra 3: ", speaker: "...", type: "talk" },
       { time: "14:45", title: "Palestra 4: ", speaker: "...", type: "talk" },
