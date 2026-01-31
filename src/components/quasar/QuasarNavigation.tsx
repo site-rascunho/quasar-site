@@ -1,7 +1,10 @@
+// src/components/quasar/QuasarNavigation.tsx
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react"; // Adicione o ícone Globe
+import { useLanguage } from "@/contexts/LanguageContext"; // Importe o hook
 import logoQuasar from "@/assets/logo-quasar-branca.png";
 import logoQuasarPreta from "@/assets/logo-quasar-preta.png";
+import { Button } from "@/components/ui/button"; // Opcional, ou use button html simples
 
 interface QuasarNavigationProps {
   isHeroVisible?: boolean;
@@ -9,13 +12,18 @@ interface QuasarNavigationProps {
 
 const QuasarNavigation = ({ isHeroVisible = true }: QuasarNavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage(); // Use o contexto
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'pt' ? 'en' : 'pt');
+  };
 
   const navLinks = [
-    { href: "#sobre", label: "Sobre" },
-    { href: "#palestrantes", label: "Palestrantes" },
-    { href: "#programacao", label: "Programação" },
-    { href: "#local", label: "Local" },
-    { href: "#inscricao", label: "Inscrição" },
+    { href: "#sobre", label: t.nav.about },
+    { href: "#palestrantes", label: t.nav.speakers },
+    { href: "#programacao", label: t.nav.schedule },
+    { href: "#local", label: t.nav.location },
+    { href: "#inscricao", label: t.nav.registration },
   ];
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -23,12 +31,11 @@ const QuasarNavigation = ({ isHeroVisible = true }: QuasarNavigationProps) => {
     const id = href.replace("#", "");
     const element = document.getElementById(id);
     if (element) {
-      // Ajuste o offset para descontar a altura da navbar fixa (aprox 80px)
       const yOffset = -80; 
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
-    setIsMenuOpen(false); // Fecha o menu mobile ao clicar
+    setIsMenuOpen(false);
   };
 
   return (
@@ -36,7 +43,6 @@ const QuasarNavigation = ({ isHeroVisible = true }: QuasarNavigationProps) => {
       isHeroVisible ? "bg-transparent" : "bg-background/95 backdrop-blur-sm border-b border-border"
     }`}>
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
         <a href="#" className="flex items-center">
           <img 
             src={isHeroVisible ? logoQuasar : logoQuasarPreta} 
@@ -61,20 +67,43 @@ const QuasarNavigation = ({ isHeroVisible = true }: QuasarNavigationProps) => {
               {link.label}
             </a>
           ))}
+          
+          {/* Language Switcher Desktop */}
+          <button
+            onClick={toggleLanguage}
+            className={`flex items-center gap-2 px-3 py-1 rounded-full border transition-all ${
+              isHeroVisible 
+                ? "border-white/30 text-white hover:bg-white/10" 
+                : "border-border text-foreground hover:bg-secondary"
+            }`}
+          >
+            <Globe className="w-4 h-4" />
+            <span className="text-xs font-bold">{language.toUpperCase()}</span>
+          </button>
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Menu"
-        >
-          {isMenuOpen ? (
-            <X className={`h-6 w-6 ${isHeroVisible ? "text-white" : "text-foreground"}`} />
-          ) : (
-            <Menu className={`h-6 w-6 ${isHeroVisible ? "text-white" : "text-foreground"}`} />
-          )}
-        </button>
+        <div className="md:hidden flex items-center gap-4">
+          {/* Language Switcher Mobile */}
+          <button
+            onClick={toggleLanguage}
+            className={`flex items-center gap-1 ${isHeroVisible ? "text-white" : "text-foreground"}`}
+          >
+            <span className="text-xs font-bold">{language.toUpperCase()}</span>
+          </button>
+
+          <button
+            className="p-2"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Menu"
+          >
+            {isMenuOpen ? (
+              <X className={`h-6 w-6 ${isHeroVisible ? "text-white" : "text-foreground"}`} />
+            ) : (
+              <Menu className={`h-6 w-6 ${isHeroVisible ? "text-white" : "text-foreground"}`} />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}

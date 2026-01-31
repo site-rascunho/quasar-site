@@ -2,22 +2,21 @@ import logoGovernoParaiba from "@/assets/logo-governo-pb.png";
 import logoPMJP from "@/assets/logo-pmjp.png";
 import logoUFPB from "@/assets/logo-ufpb.png";
 import logoQuasar from "@/assets/logo-quasar-branca.png";
-
-// IMPORTS TEMPORÁRIOS - Substitua pelos nomes corretos dos seus arquivos na pasta assets
-// Exemplo: import logoMarca1 from "@/assets/google.png";
-import LogoVenturus from "@/assets/venturus.png"; // Placeholder: Substitua este import
-import LogoAWS from "@/assets/aws.png"; // Placeholder: Substitua este import
+import LogoVenturus from "@/assets/venturus.png";
+import LogoAWS from "@/assets/aws.png";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const QuasarFooter = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-black text-white">
-      {/* Partners Section */}
       <div className="py-16">
         <div className="container mx-auto px-6">
           {/* Apoio */}
           <div className="mb-12">
             <p className="text-sm text-white/60 text-center mb-8 tracking-widest uppercase">
-              Apoio
+              {t.footer.support}
             </p>
             <div className="flex flex-wrap justify-center items-center gap-12 md:gap-16">
               <img 
@@ -35,8 +34,6 @@ const QuasarFooter = () => {
                 alt="UFPB" 
                 className="h-16 md:h-24 w-auto opacity-90"
               />
-              
-              {/* --- NOVAS MARCAS ADICIONADAS AQUI --- */}
               <img 
                 src={LogoVenturus} 
                 alt="Venturus" 
@@ -47,8 +44,6 @@ const QuasarFooter = () => {
                 alt="AWS" 
                 className="h-10 md:h-14 w-auto opacity-90" 
               />
-              {/* ------------------------------------- */}
-
             </div>
           </div>
 
@@ -58,7 +53,7 @@ const QuasarFooter = () => {
           {/* Realização */}
           <div>
             <p className="text-sm text-white/60 text-center mb-8 tracking-widest uppercase">
-              Realização
+              {t.footer.organizedBy}
             </p>
             <div className="flex justify-center">
               <img 
@@ -75,7 +70,7 @@ const QuasarFooter = () => {
       <div className="border-t border-white/10 py-6">
         <div className="container mx-auto px-6">
           <p className="text-sm text-white/40 text-center">
-            © 2026 II Encontro Quasar. Todos os direitos reservados.
+            {t.footer.rights}
           </p>
         </div>
       </div>

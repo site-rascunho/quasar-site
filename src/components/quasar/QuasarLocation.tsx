@@ -1,18 +1,21 @@
 import { MapPin } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const QuasarLocation = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="local" className="py-24 bg-secondary">
       <div className="container mx-auto px-6">
         <h2 className="text-3xl md:text-4xl font-light text-foreground text-center mb-8">
-          Local do Evento
+          {t.location.title}
         </h2>
         
         <div className="max-w-3xl mx-auto text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">
             <MapPin className="h-5 w-5 text-foreground" />
             <p className="text-lg font-medium text-foreground">
-              Estação Ciência, Cultura e Artes
+              {t.location.place}
             </p>
           </div>
           <p className="text-muted-foreground">
@@ -21,7 +24,6 @@ const QuasarLocation = () => {
           </p>
         </div>
 
-        {/* Interactive Map */}
         <div className="max-w-4xl mx-auto">
           <div className="aspect-video w-full bg-muted overflow-hidden">
             <iframe
@@ -32,7 +34,7 @@ const QuasarLocation = () => {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Localização da Estação Ciência"
+              title={t.location.place}
             />
           </div>
         </div>
