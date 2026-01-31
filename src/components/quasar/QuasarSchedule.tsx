@@ -189,10 +189,7 @@ if (item.type === "break") {
                   <p className="text-sm font-medium">{item.speaker}</p>
                 </div>
               )}
-
-              <p className="text-xs text-primary/0 group-hover:text-primary/70 transition-all transform translate-y-2 group-hover:translate-y-0 pt-1">
-                Clique para ver detalhes
-              </p>
+              
             </div>
 
             <div className="hidden md:flex items-center justify-end pl-4">
@@ -226,7 +223,7 @@ if (item.type === "break") {
           </h2>
           
           <p className="max-w-xl text-base text-muted-foreground">
-            Dois dias intensos de imersão tecnológica. Clique nas atividades para ver mais detalhes.
+            Confira a programação completa de palestras, painéis e atividades estratégicas previstas para o evento.
           </p>
         </div>
 
