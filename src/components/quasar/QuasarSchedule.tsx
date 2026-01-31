@@ -262,7 +262,7 @@ const QuasarSchedule = () => {
           <div className="relative z-50 w-full max-w-lg bg-card border border-border shadow-2xl rounded-t-2xl md:rounded-2xl overflow-hidden p-6 md:p-8">
              <button onClick={handleCloseModal} className="absolute right-4 top-4 p-2"><X className="w-5 h-5"/></button>
              <h3 className="text-2xl font-bold mb-4">{getItemTitle(selectedItem.titleKey)}</h3>
-             <p className="text-muted-foreground">Detalhes do evento em breve...</p>
+             <p className="text-muted-foreground">{t.schedule.detailsComingSoon}</p>
           </div>
         </div>
       )}

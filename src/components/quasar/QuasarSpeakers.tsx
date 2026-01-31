@@ -31,10 +31,12 @@ const speakersData: Speaker[] = [
     id: 1,
     name: "Samson Abramsky",
     titleKey: "professor",
-    institution: "University of Oxford",
+    institution: "University of Oxford / University College London",
     image: SamsonAbramsky,
-    bioPt: "Samson Abramsky é Professor Emérito de Ciência da Computação na Universidade de Oxford e Fellow da Royal Society. É um dos fundadores da Mecânica Quântica Categórica, aplicando teoria das categorias para unificar lógica e física. Seu trabalho revolucionou o entendimento da contextualidade, não-localidade e semântica da computação quântica.",
-    bioEn: "Samson Abramsky is Professor Emeritus of Computer Science at the University of Oxford and a Fellow of the Royal Society. He is a founder of Categorical Quantum Mechanics, applying category theory to unify logic and physics. His work has revolutionized the understanding of contextuality, non-locality, and the semantics of quantum computing."
+    bioPt:
+      "Samson Abramsky é Professor Emérito no Department of Computer Science da University of Oxford e atua como Professor de Ciência da Computação na University College London. É Fellow da Royal Society (FRS). É um dos pioneiros da Categorical Quantum Mechanics, usando teoria das categorias para conectar lógica, semântica e física, com contribuições fundamentais para contextualidade e não-localidade.",
+    bioEn:
+      "Samson Abramsky is an Emeritus Professor in the Department of Computer Science at the University of Oxford and a Professor of Computer Science at University College London. He is a Fellow of the Royal Society (FRS). A pioneer in Categorical Quantum Mechanics, he applies category theory to connect logic, semantics, and physics, with major contributions to contextuality and non-locality."
   },
   {
     id: 2,
@@ -42,8 +44,10 @@ const speakersData: Speaker[] = [
     titleKey: "head",
     institution: "AWS / Caltech",
     image: fernandoBrandao,
-    bioPt: "Fernando Brandão é referência global em tecnologia, atua como Diretor de Algoritmos Quânticos na Amazon Web Services (AWS) e Professor Bren no Caltech. Seus trabalhos premiados redefiniram o entendimento sobre emaranhamento e 'supremacia quântica', liderando o desenvolvimento de hardware e software para a próxima geração de computadores.",
-    bioEn: "Fernando Brandão is a global reference in technology, serving as Director of Quantum Algorithms at Amazon Web Services (AWS) and Bren Professor at Caltech. His award-winning work has redefined the understanding of entanglement and 'quantum supremacy', leading the development of hardware and software for the next generation of computers."
+    bioPt:
+      "Fernando Brandão é head of quantum algorithms na Amazon Web Services (AWS) e Bren Professor of Theoretical Physics no Caltech. Sua pesquisa em informação quântica abrange, entre outros temas, teoria do emaranhamento, complexidade quântica e o estudo de algoritmos e limites fundamentais de computação quântica.",
+    bioEn:
+      "Fernando Brandão is the head of quantum algorithms at Amazon Web Services (AWS) and the Bren Professor of Theoretical Physics at Caltech. His research in quantum information spans entanglement theory, quantum complexity, and the study of algorithms and fundamental limits of quantum computation."
   },
   {
     id: 3,
@@ -51,17 +55,21 @@ const speakersData: Speaker[] = [
     titleKey: "professor",
     institution: "UNICAMP",
     image: amirCaldeira,
-    bioPt: "Amir Caldeira é Professor Emérito da Universidade Estadual de Campinas (UNICAMP) e um dos físicos brasileiros mais citados internacionalmente. É conhecido pelo modelo Caldeira-Leggett, desenvolvido com Anthony Leggett (Nobel de Física 2003), que descreve a dissipação em sistemas quânticos.",
-    bioEn: "Amir Caldeira is Professor Emeritus at the State University of Campinas (UNICAMP) and one of the most cited Brazilian physicists internationally. He is known for the Caldeira-Leggett model, developed with Anthony Leggett (Physics Nobel 2003), which describes dissipation in quantum systems."
+    bioPt:
+      "Amir O. Caldeira é físico teórico e professor na Universidade Estadual de Campinas (UNICAMP). É conhecido pelo modelo Caldeira–Leggett, desenvolvido em colaboração com Anthony Leggett (Nobel de Física de 2003), que descreve dissipação e decoerência em sistemas quânticos acoplados a um ambiente.",
+    bioEn:
+      "Amir O. Caldeira is a theoretical physicist and a professor at UNICAMP. He is renowned for the Caldeira–Leggett model, developed in collaboration with Anthony Leggett (2003 Nobel Prize in Physics), which describes dissipation and decoherence in quantum systems coupled to an environment."
   },
   {
     id: 4,
     name: "Rafael Chaves",
-    titleKey: "professor", // Ajuste conforme necessário no translations.ts ou use uma chave genérica
-    institution: "IIP",
+    titleKey: "professor",
+    institution: "IIP / UFRN",
     image: RafaelChaves,
-    bioPt: "Rafael Chaves é Professor na UFRN e Vice-diretor do Instituto Internacional de Física (IIP). Lidera o grupo de pesquisa em Informação e Matéria Quântica e é membro afiliado da Academia Brasileira de Ciências.",
-    bioEn: "Rafael Chaves is a Professor at UFRN and Vice-Director of the International Institute of Physics (IIP). He leads the research group on Quantum Information and Matter and is an affiliated member of the Brazilian Academy of Sciences."
+    bioPt:
+      "Rafael Chaves é professor na UFRN e Deputy Director do Instituto Internacional de Física (IIP-UFRN). Lidera iniciativas e colaborações em Informação Quântica e Fundamentos, e é membro afiliado da Academia Brasileira de Ciências.",
+    bioEn:
+      "Rafael Chaves is a professor at UFRN and Deputy Director of the International Institute of Physics (IIP-UFRN). He leads research efforts and collaborations in Quantum Information and Foundations, and is an Affiliate Member of the Brazilian Academy of Sciences."
   },
   {
     id: 5,
@@ -69,17 +77,21 @@ const speakersData: Speaker[] = [
     titleKey: "professor",
     institution: "University of Oxford",
     image: aleksKissinger,
-    bioPt: "Aleks Kissinger é Professor Associado de Ciência da Computação na Universidade de Oxford. É um dos criadores do ZX-calculus, uma linguagem gráfica para raciocínio sobre computação quântica.",
-    bioEn: "Aleks Kissinger is an Associate Professor of Computer Science at the University of Oxford. He is one of the creators of ZX-calculus, a graphical language for reasoning about quantum computing."
+    bioPt:
+      "Aleks Kissinger é Professor of Quantum Computing na University of Oxford e co-lidera o Quantum Group do departamento. Sua pesquisa cobre software quântico (compilação, verificação e simulação), com forte atuação em métodos diagramáticos e no ZX-calculus — uma linguagem gráfica introduzida por Coecke e Duncan e hoje amplamente usada em otimização e raciocínio sobre circuitos quânticos.",
+    bioEn:
+      "Aleks Kissinger is a Professor of Quantum Computing at the University of Oxford and joint head of the department’s Quantum Group. His work spans quantum software (compilation, verification, and simulation), with a strong focus on diagrammatic methods and the ZX-calculus—a graphical language introduced by Coecke and Duncan and now widely used for reasoning about and optimizing quantum circuits."
   },
   {
     id: 6,
     name: "Renato Portugal",
     titleKey: "researcher",
-    institution: "LNCC",
+    institution: "LNCC (MCTI)",
     image: renatoPortugal,
-    bioPt: "Renato Portugal é Pesquisador Titular do Laboratório Nacional de Computação Científica (LNCC). É autor de livros sobre computação quântica e caminhadas quânticas, sendo uma referência internacional na área.",
-    bioEn: "Renato Portugal is a Lead Researcher at the National Laboratory for Scientific Computing (LNCC). He is the author of books on quantum computing and quantum walks, being an international reference in the area."
+    bioPt:
+      "Renato Portugal é Pesquisador Titular (Full Researcher) do Laboratório Nacional de Computação Científica (LNCC/MCTI). Atua em computação quântica e caminhadas quânticas e é autor do livro 'Quantum Walks and Search Algorithms', referência didática na área.",
+    bioEn:
+      "Renato Portugal is a Full Researcher at the National Laboratory for Scientific Computing (LNCC/MCTI). He works on quantum computing and quantum walks and authored the textbook 'Quantum Walks and Search Algorithms', a widely used reference in the field."
   },
   {
     id: 9,
@@ -87,8 +99,10 @@ const speakersData: Speaker[] = [
     titleKey: "researcher",
     institution: "Venturus",
     image: EricoTexeira,
-    bioPt: "Erico Teixeira é Doutor em Química Teórica e especialista em Computação Quântica. Une o rigor acadêmico à aplicação industrial, desenvolvendo algoritmos pioneiros para resolver problemas complexos.",
-    bioEn: "Erico Teixeira holds a PhD in Theoretical Chemistry and is a specialist in Quantum Computing. He combines academic rigor with industrial application, developing pioneering algorithms to solve complex problems."
+    bioPt:
+      "Erico Souza Teixeira é pesquisador em Computação Quântica no Venturus. Possui PhD em Química Teórica e Computacional e atua na interface entre pesquisa e aplicação, com foco em química computacional quântica, bioinformática e desenvolvimento de algoritmos para problemas de alta complexidade.",
+    bioEn:
+      "Erico Souza Teixeira is a Quantum Computing researcher at Venturus. He holds a PhD in Theoretical and Computational Chemistry and works at the intersection of research and application, focusing on quantum computational chemistry, bioinformatics, and algorithm development for high-complexity problems."
   },
   {
     id: 8,
@@ -96,27 +110,33 @@ const speakersData: Speaker[] = [
     titleKey: "student",
     institution: "Perimeter Institute",
     image: MarinaAnsanelli,
-    bioPt: "Marina Ansanelli é pesquisadora em destaque no renomado Perimeter Institute, explora as fronteiras entre inferência causal e mecânica quântica. Vencedora do Emmy Noether Emerging Talent Fund.",
-    bioEn: "Marina Ansanelli is a featured researcher at the renowned Perimeter Institute, exploring the boundaries between causal inference and quantum mechanics. Winner of the Emmy Noether Emerging Talent Fund."
+    bioPt:
+      "Marina Maciel Ansanelli é doutoranda (PhD candidate) no Perimeter Institute e recipient do Emmy Noether Emerging Talent Fund. Sua pesquisa está em fundamentos quânticos, com ênfase em inferência causal quântica (quantum causal inference) e em como estruturas causais ajudam a explicar vantagens e comportamentos não-clássicos.",
+    bioEn:
+      "Marina Maciel Ansanelli is a PhD candidate at Perimeter Institute and a recipient of the Emmy Noether Emerging Talent Fund. Her research is in quantum foundations, with a focus on quantum causal inference and how causal structures help explain quantum advantages and non-classical phenomena."
   },
   {
     id: 7,
     name: "Federico Holik",
     titleKey: "researcher",
-    institution: "CONICET / UNLP",
+    institution: "CONICET / UNLP (Instituto de Física La Plata)",
     image: FedericoHolik,
-    bioPt: "Federico Holik é autoridade latino-americana em Lógica e Fundamentos Quânticos. Atuando pelo CONICET, seu trabalho investiga a estrutura matemática profunda da informação quântica.",
-    bioEn: "Federico Holik is a Latin American authority on Logic and Quantum Foundations. Working for CONICET, his work investigates the deep mathematical structure of quantum information."
+    bioPt:
+      "Federico Hernán Holik é Investigador Adjunto (Adjoint Researcher) do CONICET no Instituto de Física La Plata (UNLP/CONICET). Sua pesquisa explora fundamentos da mecânica quântica, lógica quântica e aspectos probabilísticos e algébricos da informação quântica.",
+    bioEn:
+      "Federico Hernán Holik is an Adjoint Researcher at CONICET at the Institute of Physics La Plata (UNLP/CONICET). His work explores quantum foundations, quantum logic, and probabilistic and algebraic aspects of quantum information."
   },
   {
     id: 10,
     name: "Daniel Haro",
-    titleKey: "head", // Reutilizando head ou crie uma chave nova 'innovation_lead'
+    titleKey: "head",
     institution: "Venturus",
     image: DanielHaro,
-    bioPt: "Daniel Haro é Líder estratégico de inovação no Venturus, focado em preparar grandes empresas para a era do 'Quantum Readiness'.",
-    bioEn: "Daniel Haro is a Strategic Innovation Leader at Venturus, focused on preparing large companies for the 'Quantum Readiness' era."
-  },
+    bioPt:
+      "Daniel de Haro Moraes é Head de Tecnologias Emergentes no Venturus. Lidera iniciativas em computação quântica, incluindo programas de 'Quantum Readiness', além de atuar com temas correlatos como blockchain e cibersegurança aplicada.",
+    bioEn:
+      "Daniel de Haro Moraes is Head of Emerging Technologies at Venturus. He leads initiatives in quantum computing, including 'Quantum Readiness' programs, and also works on related areas such as blockchain and applied cybersecurity."
+  }
 ];
 
 const QuasarSpeakers = () => {

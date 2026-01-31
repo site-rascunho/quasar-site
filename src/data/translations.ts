@@ -39,6 +39,7 @@ export const translations = {
       description: "Confira a programação completa de palestras, painéis e atividades estratégicas previstas para o evento.",
       day1: "Dia 1",
       day2: "Dia 2",
+      detailsComingSoon: "Detalhes do evento em breve...",
       items: {
         checkin: "Credenciamento",
         opening: "Quasar: Abertura Institucional",
@@ -106,6 +107,7 @@ export const translations = {
       description: "Explore the full schedule of talks, panels, and strategic activities planned for the event.",
       day1: "Day 1",
       day2: "Day 2",
+      detailsComingSoon: "Event details coming soon...",
       items: {
         checkin: "Check-in",
         opening: "Quasar: Institutional Opening",
