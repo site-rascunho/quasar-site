@@ -9,11 +9,28 @@ const WIDGET_TYPE = "ticket";
 const QuasarRegistration = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showFallback, setShowFallback] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage(); // Obtendo o idioma atual
 
   useEffect(() => {
+    // Reseta os estados ao mudar o idioma para mostrar o loading novamente
+    setIsLoading(true);
+    setShowFallback(false);
+
+    // Função para limpar o widget existente
+    const cleanupWidget = () => {
+      const oldScript = document.getElementById("even3-script");
+      if (oldScript) oldScript.remove();
+      
+      const widgetContainer = document.getElementById(`even3-widget-${WIDGET_TYPE}`);
+      if (widgetContainer) widgetContainer.innerHTML = "";
+    };
+
+    // Garante que está limpo antes de começar
+    cleanupWidget();
+
     const safetyTimer = setTimeout(() => {
       const widget = document.getElementById(`even3-widget-${WIDGET_TYPE}`);
+      // Verifica se o widget carregou algum conteúdo
       if (!widget || widget.clientHeight < 50 || widget.children.length === 0) {
         setShowFallback(true);
         setIsLoading(false);
@@ -23,9 +40,11 @@ const QuasarRegistration = () => {
     const loadEven3Widget = () => {
       try {
         if (document.getElementById("even3-script")) return;
+        
         const script = document.createElement("script");
         script.id = "even3-script";
-        script.src = `https://www.even3.com.br/widget/js?e=${EVENT_CODE}&t=${WIDGET_TYPE}&lang=pt`;
+        // Injeta o idioma dinamicamente na URL (lang=${language})
+        script.src = `https://www.even3.com.br/widget/js?e=${EVENT_CODE}&t=${WIDGET_TYPE}&lang=${language}`;
         script.async = true;
         script.onload = () => setIsLoading(false);
         script.onerror = () => {
@@ -38,12 +57,16 @@ const QuasarRegistration = () => {
         setIsLoading(false);
       }
     };
+
     const initTimer = setTimeout(loadEven3Widget, 100);
+
+    // Cleanup ao desmontar ou quando o idioma mudar
     return () => {
       clearTimeout(safetyTimer);
       clearTimeout(initTimer);
+      cleanupWidget();
     };
-  }, []);
+  }, [language]); // Recarrega sempre que 'language' mudar
 
   return (
     <section id="inscricao" className="py-24 bg-background">
@@ -89,7 +112,7 @@ const QuasarRegistration = () => {
                   className="bg-[#009CA6] hover:bg-[#007F87] text-white font-semibold h-12 px-8 text-base shadow-md hover:shadow-lg transition-all"
                 >
                   <a 
-                    href="https://www.even3.com.br/tickets/get/ii-encontro-quasar-688507?even3_orig=get_tickets"
+                    href={`https://www.even3.com.br/tickets/get/ii-encontro-quasar-688507?even3_orig=get_tickets&lang=${language}`}
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
