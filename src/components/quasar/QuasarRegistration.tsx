@@ -9,14 +9,12 @@ const WIDGET_TYPE = "ticket";
 const QuasarRegistration = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showFallback, setShowFallback] = useState(false);
-  const { t, language } = useLanguage(); // Obtendo o idioma atual
+  const { t, language } = useLanguage();
 
   useEffect(() => {
-    // Reseta os estados ao mudar o idioma para mostrar o loading novamente
     setIsLoading(true);
     setShowFallback(false);
 
-    // Função para limpar o widget existente
     const cleanupWidget = () => {
       const oldScript = document.getElementById("even3-script");
       if (oldScript) oldScript.remove();
@@ -25,17 +23,18 @@ const QuasarRegistration = () => {
       if (widgetContainer) widgetContainer.innerHTML = "";
     };
 
-    // Garante que está limpo antes de começar
     cleanupWidget();
 
+    // Reduzi o tempo de segurança para 2.5s. Se a internet for lenta, já libera o botão.
     const safetyTimer = setTimeout(() => {
       const widget = document.getElementById(`even3-widget-${WIDGET_TYPE}`);
-      // Verifica se o widget carregou algum conteúdo
+      // Verifica se carregou. Se a altura for 0 ou muito pequena, assume erro.
       if (!widget || widget.clientHeight < 50 || widget.children.length === 0) {
+        console.warn("Even3 widget timed out or failed to render properly.");
         setShowFallback(true);
         setIsLoading(false);
       }
-    }, 4000);
+    }, 2500);
 
     const loadEven3Widget = () => {
       try {
@@ -43,14 +42,19 @@ const QuasarRegistration = () => {
         
         const script = document.createElement("script");
         script.id = "even3-script";
-        // Injeta o idioma dinamicamente na URL (lang=${language})
         script.src = `https://www.even3.com.br/widget/js?e=${EVENT_CODE}&t=${WIDGET_TYPE}&lang=${language}`;
         script.async = true;
-        script.onload = () => setIsLoading(false);
+        
+        script.onload = () => {
+          // Mesmo carregando o script, damos um pequeno delay para ver se renderiza
+          setTimeout(() => setIsLoading(false), 500);
+        };
+        
         script.onerror = () => {
           setShowFallback(true);
           setIsLoading(false);
         };
+        
         document.body.appendChild(script);
       } catch (error) {
         setShowFallback(true);
@@ -58,15 +62,15 @@ const QuasarRegistration = () => {
       }
     };
 
+    // Pequeno delay inicial para garantir que o DOM está pronto
     const initTimer = setTimeout(loadEven3Widget, 100);
 
-    // Cleanup ao desmontar ou quando o idioma mudar
     return () => {
       clearTimeout(safetyTimer);
       clearTimeout(initTimer);
       cleanupWidget();
     };
-  }, [language]); // Recarrega sempre que 'language' mudar
+  }, [language]);
 
   return (
     <section id="inscricao" className="py-24 bg-background">
@@ -81,41 +85,44 @@ const QuasarRegistration = () => {
             </p>
           </div>
 
-          <div className="bg-card border border-border rounded-xl overflow-hidden shadow-sm min-h-[400px] relative transition-all duration-300">
+          <div className="bg-card border border-border rounded-xl overflow-hidden shadow-sm min-h-[300px] relative transition-all duration-300">
             
+            {/* Loading State */}
             {isLoading && !showFallback && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-card/80 z-10">
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-card z-20">
                 <Loader2 className="h-10 w-10 animate-spin text-primary mb-4" />
                 <p className="text-muted-foreground">{t.registration.loading}</p>
               </div>
             )}
 
+            {/* Widget Container - Só renderiza se NÃO tiver fallback */}
             <div 
               id={`even3-widget-${WIDGET_TYPE}`} 
               className={`w-full ${showFallback ? "hidden" : "block"}`}
             ></div>
 
+            {/* Fallback Screen - Força a aparecer se showFallback for true */}
             {showFallback && (
-              <div className="flex flex-col items-center justify-center h-[400px] p-8 text-center animate-in fade-in zoom-in duration-500">
+              <div className="flex flex-col items-center justify-center h-full min-h-[350px] p-8 text-center animate-in fade-in zoom-in duration-500 bg-card">
                 <div className="bg-primary/10 p-4 rounded-full mb-6">
                   <Ticket className="w-10 h-10 text-primary" />
                 </div>
                 
                 <h3 className="text-xl font-semibold mb-2">{t.registration.available}</h3>
                 <p className="text-muted-foreground mb-8 max-w-md">
-                  {t.registration.fallbackText}
+                  {t.registration.fallbackText || "Para garantir sua vaga, acesse a página oficial de inscrição."}
                 </p>
                 
                 <Button 
                   asChild 
                   size="lg" 
-                  className="bg-[#009CA6] hover:bg-[#007F87] text-white font-semibold h-12 px-8 text-base shadow-md hover:shadow-lg transition-all"
+                  className="bg-[#009CA6] hover:bg-[#007F87] text-white font-semibold h-12 px-8 text-base shadow-md hover:shadow-lg transition-all w-full md:w-auto"
                 >
                   <a 
                     href={`https://www.even3.com.br/tickets/get/ii-encontro-quasar-688507?even3_orig=get_tickets&lang=${language}`}
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2"
+                    className="flex items-center justify-center gap-2"
                   >
                     {t.registration.button}
                     <ExternalLink className="w-4 h-4" />
