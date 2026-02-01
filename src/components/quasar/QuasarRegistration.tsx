@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Ticket, ShieldCheck, ExternalLink } from "lucide-react";
+import { ShieldCheck, ExternalLink } from "lucide-react"; // Ticket foi removido dos imports
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const QuasarRegistration = () => {
@@ -27,10 +27,8 @@ const QuasarRegistration = () => {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-4">
-              <Ticket className="w-3 h-3" />
-              {t.registration.available}
-            </div>
+            {/* REMOVIDO O BADGE "INSCRIÇÃO DISPONÍVEL" AQUI */}
+            
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 tracking-tight">
               {t.registration.title}
             </h2>

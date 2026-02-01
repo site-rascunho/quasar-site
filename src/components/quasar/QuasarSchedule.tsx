@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Clock, Coffee, Mic, Users, ArrowRight, Zap, Quote, X, Calendar } from "lucide-react";
+import { Clock, Coffee, Mic, Users, ArrowRight, Quote, X, Calendar } from "lucide-react"; // Zap foi removido dos imports
 import { cn } from "@/lib/utils";
 import QuasarLogo from "@/assets/quasar.png";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -214,10 +214,7 @@ const QuasarSchedule = () => {
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="flex flex-col items-center text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/80 border border-border text-secondary-foreground text-xs font-medium mb-4 animate-fade-in-up backdrop-blur-sm">
-            <Zap className="w-3 h-3 text-primary fill-primary" />
-            {t.schedule.badge}
-          </div>
+          {/* REMOVIDO O BADGE AQUI */}
           
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">
             {t.schedule.title}
