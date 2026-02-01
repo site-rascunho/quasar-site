@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ArrowRight, Quote } from "lucide-react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { ArrowRight, Quote, X } from "lucide-react"; // Adicionei X para botão de fechar opcional se precisar visualmente
+import { Dialog, DialogContent, DialogTitle, DialogClose } from "@/components/ui/dialog";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/data/translations";
 import {
@@ -198,36 +198,29 @@ const QuasarSpeakers = () => {
               onClick={() => setSelectedSpeaker(speaker)}
               className="group relative flex flex-col h-full text-left bg-background hover:bg-card border border-border/50 hover:border-primary/40 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
             >
-              {/* Imagem com Efeitos */}
               <div className="aspect-square overflow-hidden relative bg-muted">
                 <img
                   src={speaker.image}
                   alt={speaker.name}
                   className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
                 />
-                {/* Gradiente sutil no hover */}
                 <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-multiply" />
               </div>
 
-              {/* Conteúdo do Card */}
               <div className="p-6 flex flex-col flex-grow relative">
-                {/* Nome */}
                 <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors leading-tight">
                   {speaker.name}
                 </h3>
                 
-                {/* Cargo */}
                 <p className="text-sm text-muted-foreground font-medium line-clamp-2 mb-6 flex-grow">
                   {speaker.title[language]}
                 </p>
 
-                {/* Footer do Card com Instituição e Seta */}
                 <div className="flex items-center justify-between mt-auto pt-4 border-t border-border/50 group-hover:border-primary/10 transition-colors">
                   <span className="text-xs font-bold text-muted-foreground/80 uppercase tracking-widest group-hover:text-primary/80 transition-colors">
                     {speaker.institution}
                   </span>
                   
-                  {/* Ícone de Seta Animado */}
                   <div className="w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center text-primary transform translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">
                     <ArrowRight className="w-4 h-4" />
                   </div>
@@ -237,7 +230,7 @@ const QuasarSpeakers = () => {
           ))}
         </div>
 
-        {/* Mobile Carousel (Mantido como estava) */}
+        {/* Mobile Carousel (Mantido grande e quadrado como você pediu) */}
         <div className="md:hidden -mx-6 px-6">
           <Carousel
             opts={{
@@ -292,50 +285,61 @@ const QuasarSpeakers = () => {
           </Carousel>
         </div>
 
-        {/* Speaker Modal */}
+        {/* Speaker Modal - AJUSTADO PARA MOBILE MENOR */}
         <Dialog open={!!selectedSpeaker} onOpenChange={() => setSelectedSpeaker(null)}>
-          <DialogContent className="max-w-4xl p-0 overflow-y-auto max-h-[90vh] md:max-h-[unset] md:overflow-hidden bg-card border-none shadow-2xl rounded-2xl md:rounded-3xl">
+          <DialogContent className="max-w-4xl p-0 overflow-hidden bg-card border-none shadow-2xl rounded-2xl md:rounded-3xl max-h-[85vh] md:max-h-[unset] flex flex-col md:block">
             {selectedSpeaker && (
-              <div className="flex flex-col md:flex-row">
+              <div className="flex flex-col md:flex-row h-full md:h-auto">
                 
-                {/* Coluna da Imagem */}
-                <div className="relative w-full md:w-2/5 aspect-square md:aspect-auto md:h-auto md:min-h-[450px] group flex-shrink-0">
+                {/* AJUSTE CRÍTICO: 
+                   Mobile: h-56 (altura fixa razoável) ao invés de aspect-square ou aspect-video.
+                   Desktop: Mantém layout original.
+                */}
+                <div className="relative w-full h-56 md:h-auto md:w-2/5 md:min-h-[450px] group flex-shrink-0">
                   <img
                     src={selectedSpeaker.image}
                     alt={selectedSpeaker.name}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="absolute inset-0 w-full h-full object-cover object-top"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-black/5"></div>
+                  {/* Overlay ajustado para legibilidade do botão fechar padrão */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-black/30 md:bg-gradient-to-r md:from-transparent md:to-black/5"></div>
+                  
+                  {/* Botão de fechar manual caso o padrão fique ruim sobre a imagem */}
+                  <DialogClose className="absolute right-4 top-4 rounded-full bg-black/20 backdrop-blur-md p-2 text-white hover:bg-black/40 transition-colors md:hidden focus:outline-none">
+                    <X className="h-4 w-4" />
+                    <span className="sr-only">Close</span>
+                  </DialogClose>
                 </div>
 
                 {/* Coluna de Conteúdo */}
-                <div className="w-full md:w-3/5 p-6 md:p-10 flex flex-col justify-center bg-background/95 backdrop-blur-sm relative">
+                <div className="w-full md:w-3/5 p-5 md:p-10 flex flex-col bg-background/95 backdrop-blur-sm relative overflow-y-auto md:overflow-visible">
                    
-                   <div className="mb-6 md:mb-8 md:pr-8">
-                      <div className="inline-flex items-center gap-2 mb-4">
-                         <span className="px-3 py-1 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest bg-primary/10 text-primary border border-primary/20 shadow-sm">
+                   <div className="mb-4 md:mb-8 md:pr-8 shrink-0">
+                      <div className="inline-flex items-center gap-2 mb-2 md:mb-4">
+                         <span className="px-2.5 py-0.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest bg-primary/10 text-primary border border-primary/20 shadow-sm">
                            {selectedSpeaker.institution}
                          </span>
                       </div>
                       
-                      <DialogTitle className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 leading-tight tracking-tight">
+                      <DialogTitle className="text-2xl md:text-4xl lg:text-5xl font-bold text-foreground mb-1 md:mb-3 leading-tight tracking-tight">
                         {selectedSpeaker.name}
                       </DialogTitle>
                       
-                      <p className="text-lg md:text-xl font-medium text-muted-foreground/90 flex items-center gap-2">
+                      <p className="text-sm md:text-xl font-medium text-muted-foreground/90 flex items-center gap-2">
                         {selectedSpeaker.title[language]}
                       </p>
                    </div>
 
                    <div className="relative">
-                      <Quote className="absolute -top-4 -left-2 w-8 h-8 text-primary/10 rotate-180" />
+                      <Quote className="hidden md:block absolute -top-4 -left-2 w-8 h-8 text-primary/10 rotate-180" />
                       
-                      <div className="prose prose-sm md:prose-base text-muted-foreground leading-relaxed max-h-[300px] overflow-y-auto pr-4 custom-scrollbar relative z-10 pl-1">
+                      {/* Área de texto com scroll próprio se necessário no desktop, mas flui no mobile */}
+                      <div className="prose prose-sm md:prose-base text-muted-foreground leading-relaxed custom-scrollbar relative z-10 pl-1 pb-4">
                          <p>{selectedSpeaker.bio[language]}</p>
                       </div>
                    </div>
 
-                   <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                   <div className="hidden md:block absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                 </div>
               </div>
             )}
