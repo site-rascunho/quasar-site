@@ -55,7 +55,7 @@ const QuasarFooter = () => {
               <img 
                 src={logoQuasar} 
                 alt="Quasar" 
-                className="h-17 md:h-24 w-auto opacity-90"
+                className="h-14 md:h-24 w-auto opacity-90"
               />
               {/* Logo UFPB: Aumentado no mobile (h-20) */}
               <img 
