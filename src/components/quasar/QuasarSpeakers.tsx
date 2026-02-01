@@ -190,37 +190,54 @@ const QuasarSpeakers = () => {
           {t.speakers.title}
         </h2>
 
-        {/* Desktop Grid (Hidden on Mobile) */}
+        {/* Desktop Grid (Modernizado) */}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {speakers.map((speaker) => (
             <button
               key={speaker.id}
               onClick={() => setSelectedSpeaker(speaker)}
-              className="group text-left bg-background p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 rounded-sm border border-transparent hover:border-primary/10"
+              className="group relative flex flex-col h-full text-left bg-background hover:bg-card border border-border/50 hover:border-primary/40 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
             >
-              <div className="aspect-square overflow-hidden mb-4 grayscale group-hover:grayscale-0 transition-all duration-500 rounded-sm relative">
+              {/* Imagem com Efeitos */}
+              <div className="aspect-square overflow-hidden relative bg-muted">
                 <img
                   src={speaker.image}
                   alt={speaker.name}
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
                 />
-                 {/* Efeito sutil na imagem */}
-                 <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 mix-blend-multiply"></div>
+                {/* Gradiente sutil no hover */}
+                <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-multiply" />
               </div>
-              <h3 className="text-lg font-medium text-foreground mb-1 group-hover:text-primary transition-colors">
-                {speaker.name}
-              </h3>
-              <p className="text-sm text-muted-foreground mb-1 font-medium">
-                {speaker.title[language]}
-              </p>
-              <p className="text-xs text-muted-foreground uppercase tracking-wide opacity-80">
-                {speaker.institution}
-              </p>
+
+              {/* Conteúdo do Card */}
+              <div className="p-6 flex flex-col flex-grow relative">
+                {/* Nome */}
+                <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors leading-tight">
+                  {speaker.name}
+                </h3>
+                
+                {/* Cargo */}
+                <p className="text-sm text-muted-foreground font-medium line-clamp-2 mb-6 flex-grow">
+                  {speaker.title[language]}
+                </p>
+
+                {/* Footer do Card com Instituição e Seta */}
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-border/50 group-hover:border-primary/10 transition-colors">
+                  <span className="text-xs font-bold text-muted-foreground/80 uppercase tracking-widest group-hover:text-primary/80 transition-colors">
+                    {speaker.institution}
+                  </span>
+                  
+                  {/* Ícone de Seta Animado */}
+                  <div className="w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center text-primary transform translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                </div>
+              </div>
             </button>
           ))}
         </div>
 
-        {/* Mobile Carousel (Visible on Mobile) */}
+        {/* Mobile Carousel (Mantido como estava) */}
         <div className="md:hidden -mx-6 px-6">
           <Carousel
             opts={{
@@ -237,7 +254,6 @@ const QuasarSpeakers = () => {
                     className="w-full h-full text-left group"
                   >
                     <div className="bg-background rounded-2xl overflow-hidden border border-border/50 shadow-sm transition-all duration-300 active:scale-[0.98] h-full flex flex-col">
-                      {/* Mudado de aspect-[4/3] para aspect-square para aumentar a altura */}
                       <div className="aspect-square overflow-hidden relative">
                         <img
                           src={speaker.image}
