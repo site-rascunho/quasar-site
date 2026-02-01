@@ -30,11 +30,6 @@ const QuasarFooter = () => {
                 className="h-10 md:h-12 w-auto opacity-90"
               />
               <img 
-                src={logoUFPB} 
-                alt="UFPB" 
-                className="h-16 md:h-24 w-auto opacity-90"
-              />
-              <img 
                 src={LogoVenturus} 
                 alt="Venturus" 
                 className="h-12 md:h-16 w-auto opacity-90" 
@@ -60,6 +55,11 @@ const QuasarFooter = () => {
                 src={logoQuasar} 
                 alt="Quasar" 
                 className="h-18 md:h-24 w-auto opacity-90"
+              />
+              <img 
+                src={logoUFPB} 
+                alt="UFPB" 
+                className="h-16 md:h-24 w-auto opacity-90"
               />
             </div>
           </div>
