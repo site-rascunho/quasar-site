@@ -1,144 +1,97 @@
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Loader2, Ticket } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Ticket, ShieldCheck, Loader2, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const EVENT_CODE = "ii-encontro-quasar-688507"; 
-const WIDGET_TYPE = "ticket"; 
-
 const QuasarRegistration = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [showFallback, setShowFallback] = useState(false);
-  const { t, language } = useLanguage();
-
-  useEffect(() => {
-    setIsLoading(true);
-    setShowFallback(false);
-
-    const cleanupWidget = () => {
-      const oldScript = document.getElementById("even3-script");
-      if (oldScript) oldScript.remove();
-      
-      const widgetContainer = document.getElementById(`even3-widget-${WIDGET_TYPE}`);
-      if (widgetContainer) widgetContainer.innerHTML = "";
-    };
-
-    cleanupWidget();
-
-    // Reduzi o tempo de segurança para 2.5s. Se a internet for lenta, já libera o botão.
-    const safetyTimer = setTimeout(() => {
-      const widget = document.getElementById(`even3-widget-${WIDGET_TYPE}`);
-      // Verifica se carregou. Se a altura for 0 ou muito pequena, assume erro.
-      if (!widget || widget.clientHeight < 50 || widget.children.length === 0) {
-        console.warn("Even3 widget timed out or failed to render properly.");
-        setShowFallback(true);
-        setIsLoading(false);
-      }
-    }, 2500);
-
-    const loadEven3Widget = () => {
-      try {
-        if (document.getElementById("even3-script")) return;
-        
-        const script = document.createElement("script");
-        script.id = "even3-script";
-        script.src = `https://www.even3.com.br/widget/js?e=${EVENT_CODE}&t=${WIDGET_TYPE}&lang=${language}`;
-        script.async = true;
-        
-        script.onload = () => {
-          // Mesmo carregando o script, damos um pequeno delay para ver se renderiza
-          setTimeout(() => setIsLoading(false), 500);
-        };
-        
-        script.onerror = () => {
-          setShowFallback(true);
-          setIsLoading(false);
-        };
-        
-        document.body.appendChild(script);
-      } catch (error) {
-        setShowFallback(true);
-        setIsLoading(false);
-      }
-    };
-
-    // Pequeno delay inicial para garantir que o DOM está pronto
-    const initTimer = setTimeout(loadEven3Widget, 100);
-
-    return () => {
-      clearTimeout(safetyTimer);
-      clearTimeout(initTimer);
-      cleanupWidget();
-    };
-  }, [language]);
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+  const { t } = useLanguage();
 
   return (
-    <section id="inscricao" className="py-24 bg-background">
-      <div className="container mx-auto px-6">
+    <section id="inscricao" className="py-24 bg-background relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-grid-slate-50/[0.03] bg-[bottom_1px] [mask-image:linear-gradient(to_bottom,transparent,white)] pointer-events-none"></div>
+      
+      <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12 space-y-4">
-            <h2 className="text-3xl md:text-4xl font-light text-foreground">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-4">
+              <Ticket className="w-3 h-3" />
+              {t.registration.available}
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 tracking-tight">
               {t.registration.title}
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground max-w-xl mx-auto">
               {t.registration.description}
             </p>
           </div>
 
-          <div className="bg-card border border-border rounded-xl overflow-hidden shadow-sm min-h-[300px] relative transition-all duration-300">
+          {/* Card Container */}
+          <div className="bg-card border border-border rounded-2xl shadow-sm overflow-hidden relative">
             
             {/* Loading State */}
-            {isLoading && !showFallback && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-card z-20">
-                <Loader2 className="h-10 w-10 animate-spin text-primary mb-4" />
-                <p className="text-muted-foreground">{t.registration.loading}</p>
+            {!iframeLoaded && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-card z-10 space-y-4">
+                <Loader2 className="w-8 h-8 text-primary animate-spin" />
+                <p className="text-sm text-muted-foreground">{t.registration.loading}</p>
               </div>
             )}
 
-            {/* Widget Container - Só renderiza se NÃO tiver fallback */}
-            <div 
-              id={`even3-widget-${WIDGET_TYPE}`} 
-              className={`w-full ${showFallback ? "hidden" : "block"}`}
-            ></div>
-
-            {/* Fallback Screen - Força a aparecer se showFallback for true */}
-            {showFallback && (
-              <div className="flex flex-col items-center justify-center h-full min-h-[350px] p-8 text-center animate-in fade-in zoom-in duration-500 bg-card">
-                <div className="bg-primary/10 p-4 rounded-full mb-6">
-                  <Ticket className="w-10 h-10 text-primary" />
-                </div>
-                
-                <h3 className="text-xl font-semibold mb-2">{t.registration.available}</h3>
-                <p className="text-muted-foreground mb-8 max-w-md">
-                  {t.registration.fallbackText || "Para garantir sua vaga, acesse a página oficial de inscrição."}
-                </p>
-                
-                <Button 
-                  asChild 
-                  size="lg" 
-                  className="bg-[#009CA6] hover:bg-[#007F87] text-white font-semibold h-12 px-8 text-base shadow-md hover:shadow-lg transition-all w-full md:w-auto"
-                >
-                  <a 
-                    href={`https://www.even3.com.br/tickets/get/ii-encontro-quasar-688507?even3_orig=get_tickets&lang=${language}`}
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2"
-                  >
-                    {t.registration.button}
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                </Button>
+            {/* BOTÃO MOBILE (NOVO) */}
+            <div className="md:hidden p-6 pb-2">
+              <a
+                href="https://www.even3.com.br/ii-encontro-quasar-526038/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-full px-6 py-4 bg-[#0097FF] hover:bg-[#007acc] text-white rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-xl gap-2 active:scale-95"
+              >
+                <ExternalLink className="w-4 h-4" />
+                {/* @ts-ignore */}
+                {t.registration.openExternal}
+              </a>
+              <div className="text-center mt-4 mb-2">
+                <span className="text-xs text-muted-foreground uppercase tracking-widest px-2 bg-card relative z-10">Ou preencha abaixo</span>
+                <div className="absolute left-0 right-0 h-px bg-border -mt-2 z-0 mx-6"></div>
               </div>
-            )}
-            
-          </div>
-          
-          <div className="text-center mt-6">
-            <p className="text-xs text-muted-foreground">
+            </div>
+
+            {/* Iframe Area */}
+            <div className="w-full relative bg-white">
+               {/* Fallback overlay se o iframe não carregar ou se o usuário preferir */}
+               <div className={iframeLoaded ? "hidden" : "hidden md:flex absolute inset-0 flex-col items-center justify-center p-8 text-center bg-card/90 backdrop-blur-sm z-20"}>
+                 <p className="text-muted-foreground mb-6 max-w-md">
+                   {t.registration.fallbackText}
+                 </p>
+                 <a 
+                   href="https://www.even3.com.br/ii-encontro-quasar-526038/" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   className="inline-flex items-center gap-2 px-6 py-3 bg-[#0097FF] hover:bg-[#007acc] text-white rounded-lg transition-colors font-medium shadow-md hover:shadow-lg"
+                 >
+                   <ExternalLink className="w-4 h-4" />
+                   {t.registration.button}
+                 </a>
+               </div>
+
+              <iframe 
+                src="https://www.even3.com.br/ii-encontro-quasar-526038/" 
+                width="100%" 
+                height="1200px" 
+                frameBorder="0"
+                onLoad={() => setIframeLoaded(true)}
+                className="w-full min-h-[600px] md:min-h-[1200px]"
+                title="Inscrição Even3"
+                loading="lazy"
+              ></iframe>
+            </div>
+
+            {/* Footer de Segurança */}
+            <div className="bg-secondary/30 p-4 border-t border-border flex items-center justify-center gap-2 text-xs text-muted-foreground">
+              <ShieldCheck className="w-3.5 h-3.5 text-green-600" />
               {t.registration.secure}
-            </p>
+            </div>
           </div>
-
         </div>
       </div>
     </section>

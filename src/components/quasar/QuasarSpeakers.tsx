@@ -11,7 +11,7 @@ import renatoPortugal from "@/assets/speakers/renato-portugal.jpg";
 import MarinaAnsanelli from '@/assets/speakers/marina-ansanelli.jpeg';
 import FedericoHolik from '@/assets/speakers/federico-holik.jpeg'; 
 import DanielHaro from '@/assets/speakers/daniel-moraes.jpeg'; 
-import EricoTexeira from '@/assets/speakers/erico-texeira.jpeg';
+import EricoTexeira from '@/assets/speakers/erico-texeira.png';
 import SamsonAbramsky from '@/assets/speakers/samson-abramsky.jpeg';
 import RafaelChaves from '@/assets/speakers/rafael-chaves.jpeg';
 

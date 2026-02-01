@@ -26,7 +26,7 @@ export const translations = {
     },
     speakers: {
       title: "Palestrantes (Preliminar)",
-      seeMore: "Ver mais", // Adicionado
+      seeMore: "Ver mais",
       role: {
         professor: "Professor(a)",
         head: "Head / Diretor(a)",
@@ -40,7 +40,7 @@ export const translations = {
       description: "Confira a programação completa de palestras, painéis e atividades estratégicas previstas para o evento.",
       day1: "Dia 1",
       day2: "Dia 2",
-      seeMore: "Ver mais", // Adicionado
+      seeMore: "Ver mais",
       modal: {
         aboutActivity: "Sobre a atividade",
         speaker: "Palestrante",
@@ -78,7 +78,8 @@ export const translations = {
       available: "Inscrição Disponível",
       fallbackText: "Para garantir a melhor experiência e segurança, acesse o formulário de inscrição diretamente na plataforma oficial.",
       button: "Inscrever-se no Even3",
-      secure: "Ambiente seguro processado por Even3. Seus dados estão protegidos."
+      secure: "Ambiente seguro processado por Even3. Seus dados estão protegidos.",
+      openExternal: "Abrir direto no Even3" // Adicionado
     },
     footer: {
       support: "Apoio",
@@ -111,7 +112,7 @@ export const translations = {
     },
     speakers: {
       title: "Speakers (Preliminary)",
-      seeMore: "See more", // Adicionado
+      seeMore: "See more",
       role: {
         professor: "Professor",
         head: "Head / Director",
@@ -125,7 +126,7 @@ export const translations = {
       description: "Explore the full schedule of talks, panels, and strategic activities planned for the event.",
       day1: "Day 1",
       day2: "Day 2",
-      seeMore: "See more", // Adicionado
+      seeMore: "See more",
       modal: {
         aboutActivity: "About the activity",
         speaker: "Speaker",
@@ -163,7 +164,8 @@ export const translations = {
       available: "Registration Open",
       fallbackText: "To ensure the best experience and security, please access the registration form directly on the official platform.",
       button: "Register via Even3",
-      secure: "Secure transaction processed by Even3. Your data is protected."
+      secure: "Secure transaction processed by Even3. Your data is protected.",
+      openExternal: "Open directly on Even3" // Adicionado
     },
     footer: {
       support: "Support",
