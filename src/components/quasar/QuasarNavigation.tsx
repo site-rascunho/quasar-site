@@ -37,6 +37,15 @@ const QuasarNavigation = ({ isHeroVisible = true }: QuasarNavigationProps) => {
     setLanguage(language === 'pt' ? 'en' : 'pt');
   };
 
+  // Renderiza o rótulo do idioma (ex: PT | EN)
+  const renderLanguageLabel = () => (
+    <div className="flex items-center gap-1">
+      <span className={language === 'pt' ? "font-bold" : "opacity-60 font-normal"}>PT</span>
+      <span className="opacity-40">|</span>
+      <span className={language === 'en' ? "font-bold" : "opacity-60 font-normal"}>EN</span>
+    </div>
+  );
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isHeroVisible ? "bg-transparent" : "bg-background/95 backdrop-blur-sm border-b border-border"
@@ -71,31 +80,32 @@ const QuasarNavigation = ({ isHeroVisible = true }: QuasarNavigationProps) => {
           {/* Language Switcher Desktop */}
           <button
             onClick={toggleLanguage}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-bold transition-all hover:scale-105 ${
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs transition-all hover:scale-105 ${
               isHeroVisible
                 ? "border-white/30 text-white bg-white/10 hover:bg-white/20"
                 : "border-primary/20 text-primary bg-primary/5 hover:bg-primary/10"
             }`}
-            aria-label="Mudar idioma"
+            aria-label={language === 'pt' ? "Mudar para Inglês" : "Switch to Portuguese"}
           >
             <Globe className="w-3.5 h-3.5" />
-            {/* Aqui usamos "BR" visualmente, mas a lógica usa 'pt' */}
-            {language === 'pt' ? 'BR' : 'EN'}
+            {renderLanguageLabel()}
           </button>
         </div>
 
         {/* Mobile Menu Button */}
         <div className="flex items-center gap-4 md:hidden">
-          {/* Language Switcher Mobile (Visível fora do menu hambúrguer para facilidade) */}
+          {/* Language Switcher Mobile */}
            <button
             onClick={toggleLanguage}
-            className={`flex items-center gap-1 px-2 py-1 rounded border text-xs font-bold ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs ${
               isHeroVisible
-                ? "border-white/30 text-white"
+                ? "border-white/30 text-white bg-white/10"
                 : "border-foreground/20 text-foreground"
             }`}
+            aria-label={language === 'pt' ? "Mudar para Inglês" : "Switch to Portuguese"}
           >
-             {language === 'pt' ? 'BR' : 'EN'}
+             <Globe className="w-3.5 h-3.5" />
+             {renderLanguageLabel()}
           </button>
 
           <button
