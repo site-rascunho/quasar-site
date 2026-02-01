@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, ArrowRight, Quote } from "lucide-react"; // Importei Quote também para um detalhe visual
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"; // Removi DialogHeader pois faremos um layout customizado
+import { ChevronLeft, ChevronRight, ArrowRight, Quote } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/data/translations";
-import { cn } from "@/lib/utils";
 
 import aleksKissinger from "@/assets/speakers/aleks-kissinger.jpg";
 import fernandoBrandao from "@/assets/speakers/fernando-brandao.jpg";
@@ -297,14 +296,14 @@ const QuasarSpeakers = () => {
           </div>
         </div>
 
-        {/* Speaker Modal - Redesenhado */}
+        {/* Speaker Modal - Redesenhado com Fix Mobile */}
         <Dialog open={!!selectedSpeaker} onOpenChange={() => setSelectedSpeaker(null)}>
-          <DialogContent className="max-w-4xl p-0 overflow-hidden bg-card border-none shadow-2xl rounded-2xl md:rounded-3xl">
+          <DialogContent className="max-w-4xl p-0 overflow-y-auto max-h-[90vh] md:max-h-[unset] md:overflow-hidden bg-card border-none shadow-2xl rounded-2xl md:rounded-3xl">
             {selectedSpeaker && (
               <div className="flex flex-col md:flex-row">
                 
-                {/* Coluna da Imagem */}
-                <div className="relative w-full md:w-2/5 h-64 md:h-auto md:min-h-[450px] group">
+                {/* Coluna da Imagem: Usando aspect-square no mobile para evitar cortes */}
+                <div className="relative w-full md:w-2/5 aspect-square md:aspect-auto md:h-auto md:min-h-[450px] group flex-shrink-0">
                   <img
                     src={selectedSpeaker.image}
                     alt={selectedSpeaker.name}
