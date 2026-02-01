@@ -10,10 +10,10 @@ const QuasarLocation = () => {
 
   // Alteração: Removidas latitude e longitude.
   // Usamos apenas o nome do local para que o Google encontre a entidade correta.
-  const mapQueryName = encodeURIComponent("Estação Cabo Branco - Ciência, Cultura e Artes");
+
 
   // Link externo para abrir a pesquisa no site/app do Google Maps
-  const googleMapsExternalUrl = `https://www.google.com/maps/search/?api=1&query=${mapQueryName}`;
+  const googleMapsExternalUrl = `https://maps.app.goo.gl/Q9UPsdXi4zV4aEBm9`;
 
   // URL do Iframe baseada no nome (parâmetro q=)
   // t= (tipo de mapa, vazio é padrão)
