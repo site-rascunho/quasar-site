@@ -9,7 +9,7 @@ const QuasarLocation = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   // Endereço codificado para URL
-  const mapQuery = encodeURIComponent("Av. João Cirilo da Silva, Altiplano Cabo Branco, João Pessoa - PB");
+  const mapQuery = encodeURIComponent("Estação Cabo Branco - Ciência, Cultura e Artes");
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
 
   return (
@@ -55,7 +55,7 @@ const QuasarLocation = () => {
             ) : (
               /* Iframe do Mapa */
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.226933596163!2d-34.823985!3d-7.099833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7acdd6207055555%3A0x6e3c0919248231c!2sEstação%20Cabo%20Branco!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" // Substituí por um embed genérico da Estação Cabo Branco/Altiplano como exemplo. Você deve colocar o embed real aqui.
+                src="https://www.google.com/maps/place/Esta%C3%A7%C3%A3o+Cabo+Branco+-+Ci%C3%AAncia,+Cultura+e+Artes/@-7.1495621,-34.7980095,17z/data=!3m1!4b1!4m6!3m5!1s0x7acc3156da82885:0x488b41b7d2620033!8m2!3d-7.1495621!4d-34.7980095!16s%2Fg%2F1230vdlt?entry=ttu&g_ep=EgoyMDI2MDEyOC4wIKXMDSoKLDEwMDc5MjA2N0gBUAM%3D" // Substituí por um embed genérico da Estação Cabo Branco/Altiplano como exemplo. Você deve colocar o embed real aqui.
                 width="100%"
                 height="100%"
                 style={{ border: 0, opacity: isLoading ? 0 : 1, transition: 'opacity 0.3s' }}
