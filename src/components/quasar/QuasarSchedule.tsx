@@ -185,7 +185,15 @@ const QuasarSchedule = () => {
                   <p className="text-sm font-medium">{item.speaker}</p>
                 </div>
               )}
+
+              {/* MENSAGEM VER MAIS (MOBILE ONLY) */}
+              <div className="md:hidden mt-2 flex items-center gap-1.5 text-xs font-medium text-primary/70">
+                {/* @ts-ignore */}
+                <span>{t.schedule.seeMore}</span>
+                <ArrowRight className="w-3 h-3" />
+              </div>
             </div>
+
              <div className="hidden md:flex items-center justify-end pl-4">
               <div className={cn(
                 "w-8 h-8 rounded-full flex items-center justify-center opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300",

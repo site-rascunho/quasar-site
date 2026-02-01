@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react"; // Importei ArrowRight
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/data/translations";
@@ -11,7 +11,7 @@ import renatoPortugal from "@/assets/speakers/renato-portugal.jpg";
 import MarinaAnsanelli from '@/assets/speakers/marina-ansanelli.jpeg';
 import FedericoHolik from '@/assets/speakers/federico-holik.jpeg'; 
 import DanielHaro from '@/assets/speakers/daniel-moraes.jpeg'; 
-import EricoTexeira from '@/assets/speakers/erico-texeira.png';
+import EricoTexeira from '@/assets/speakers/erico-texeira.jpeg';
 import SamsonAbramsky from '@/assets/speakers/samson-abramsky.jpeg';
 import RafaelChaves from '@/assets/speakers/rafael-chaves.jpeg';
 
@@ -252,6 +252,13 @@ const QuasarSpeakers = () => {
                     <p className="text-sm text-muted-foreground">
                       {speaker.institution}
                     </p>
+
+                     {/* MENSAGEM VER MAIS (MOBILE ONLY) */}
+                    <div className="mt-4 flex items-center gap-1.5 text-xs font-medium text-primary">
+                        {/* @ts-ignore */}
+                        <span>{t.speakers.seeMore}</span>
+                        <ArrowRight className="w-3 h-3" />
+                    </div>
                   </div>
                 </button>
               ))}

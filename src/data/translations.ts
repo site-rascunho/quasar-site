@@ -26,6 +26,7 @@ export const translations = {
     },
     speakers: {
       title: "Palestrantes (Preliminar)",
+      seeMore: "Ver mais", // Adicionado
       role: {
         professor: "Professor(a)",
         head: "Head / Diretor(a)",
@@ -39,13 +40,12 @@ export const translations = {
       description: "Confira a programação completa de palestras, painéis e atividades estratégicas previstas para o evento.",
       day1: "Dia 1",
       day2: "Dia 2",
-      // REMOVA detailsComingSoon e ADICIONE estas chaves:
+      seeMore: "Ver mais", // Adicionado
       modal: {
         aboutActivity: "Sobre a atividade",
         speaker: "Palestrante",
         close: "Fechar Detalhes"
       },
-      // Descrições genéricas ou específicas para cada chave
       descriptions: {
         checkin: "Recepção dos participantes, entrega de credenciais e materiais do evento. Aproveite este momento para um café de boas-vindas.",
         opening: "Cerimônia oficial de abertura com representantes institucionais e apresentação da visão de futuro do Centro Internacional de Computação Quântica.",
@@ -68,8 +68,8 @@ export const translations = {
     location: {
       title: "Local do Evento",
       place: "Estação Ciência, Cultura e Artes",
-      openMaps: "Abrir no Google Maps",        // <--- Novo
-      openMapsApp: "Abrir rota no App de Mapas" // <--- Novo
+      openMaps: "Abrir no Google Maps",
+      openMapsApp: "Abrir rota no App de Mapas"
     },
     registration: {
       title: "Inscrição",
@@ -96,8 +96,8 @@ export const translations = {
     },
     hero: {
       dateLocation: "July/August 2026 • João Pessoa",
-      titlePrefix: "II",          // "II"
-      TitleSuffix: "Meeting",     // "Meeting" - A imagem ficará no meio
+      titlePrefix: "II",
+      TitleSuffix: "Meeting",
       subtitle: "Inauguration of the International Centre for Quantum Computing (CIQUANTA)",
       cta: "SECURE YOUR SPOT",
       scroll: "Discover",
@@ -111,6 +111,7 @@ export const translations = {
     },
     speakers: {
       title: "Speakers (Preliminary)",
+      seeMore: "See more", // Adicionado
       role: {
         professor: "Professor",
         head: "Head / Director",
@@ -124,6 +125,7 @@ export const translations = {
       description: "Explore the full schedule of talks, panels, and strategic activities planned for the event.",
       day1: "Day 1",
       day2: "Day 2",
+      seeMore: "See more", // Adicionado
       modal: {
         aboutActivity: "About the activity",
         speaker: "Speaker",
@@ -151,8 +153,8 @@ export const translations = {
     location: {
       title: "Event Location",
       place: "Science, Culture and Arts Station",
-      openMaps: "Open in Google Maps",         // <--- New
-      openMapsApp: "Open Route in Maps App"    // <--- New
+      openMaps: "Open in Google Maps",
+      openMapsApp: "Open Route in Maps App"
     },
     registration: {
       title: "Registration",
