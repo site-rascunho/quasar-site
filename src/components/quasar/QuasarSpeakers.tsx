@@ -139,8 +139,8 @@ const speakers: Speaker[] = [
     institution: "Perimeter Institute",
     image: MarinaAnsanelli,
     bio: {
-      pt: 'Marina Maciel Ansanelli é doutoranda (PhD candidate) no Perimeter Institute e recipient do Emmy Noether Emerging Talent Fund. Sua pesquisa está em fundamentos quânticos, com ênfase em inferência causal quântica (quantum causal inference) e em como estruturas causais ajudam a explicar vantagens e comportamentos não-clássicos.',
-      en: 'Marina Maciel Ansanelli is a PhD candidate at the Perimeter Institute and a recipient of the Emmy Noether Emerging Talent Fund. Her research focuses on quantum fundamentals, with an emphasis on quantum causal inference and how causal structures help explain non-classical advantages and behaviors.'
+      pt: 'Marina é uma doutoranda no último ano no Perimeter Institute for Theoretical Physics, no Canadá, sob a supervisão de Robert Spekkens. Seus principais interesses são causalidade clássica e quântica, bem como suas conexões com outras áreas dos fundamentos da mecanica quantica, como teorias de recursos, teorias probabilísticas generalizadas e experimentos do tipo “amigo de Eugene Wigner”.',
+      en: 'Marina is a final year PhD student at the Perimeter Institute for Theoretical Physics, in Canada, under the supervision of Robert Spekkens. Her main interests are classical and quantum causality, as well as its connections to other areas of quantum foundations such as resource theories, generalized probabilistic theories and Wigner\'s friend though experiments.'
     }
   },
   {
