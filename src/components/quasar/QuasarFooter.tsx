@@ -61,7 +61,7 @@ const QuasarFooter = () => {
               <img 
                 src={logoUFPB} 
                 alt="UFPB" 
-                className="h-20 md:h-24 w-auto opacity-90"
+                className="h-18 md:h-24 w-auto opacity-90"
               />
             </div>
           </div>
