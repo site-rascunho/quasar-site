@@ -50,7 +50,7 @@ const QuasarFooter = () => {
             <p className="text-sm text-white/60 text-center mb-8 tracking-widest uppercase">
               {t.footer.organizedBy}
             </p>
-            <div className="flex flex-wrap justify-center items-center gap-12 md:gap-16">
+            <div className="flex flex-wrap justify-center items-center gap-7 md:gap-16">
               {/* Logo Quasar: Reduzido no mobile (h-12) */}
               <img 
                 src={logoQuasar} 
