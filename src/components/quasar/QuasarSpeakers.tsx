@@ -176,12 +176,44 @@ const speakers: Speaker[] = [
       en: "Daniel Haro is a Strategic Innovation Leader at Venturus, focused on preparing large companies for the 'Quantum Readiness' era. He operates on the front lines of technological translation, connecting advanced quantum science to market applications and new business models."
     }
   },
+  {
+    id: 11,
+    name: "Bárbara Amaral",
+    title: {
+      pt: "Professora Doutora",
+      en: "Professor"
+    },
+    institution: "USP",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800", // Placeholder
+    bio: {
+      pt: "Bárbara Amaral é professora no Instituto de Física da USP. Sua pesquisa foca em fundamentos da teoria quântica, teoria de informação quântica e contextualidade. Tem contribuído significativamente para a caracterização de correlações quânticas e suas aplicações em processamento de informação.",
+      en: "Bárbara Amaral is a professor at the Physics Institute of USP. Her research focuses on foundations of quantum theory, quantum information theory, and contextuality. She has contributed significantly to the characterization of quantum correlations and their applications in information processing."
+    }
+  },
+  {
+    id: 12,
+    name: "Roberto Serra",
+    title: {
+      pt: "Professor Associado",
+      en: "Associate Professor"
+    },
+    institution: "UFABC",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800", // Placeholder
+    bio: {
+      pt: "Roberto Serra é Professor na UFABC e pesquisador em termodinâmica quântica e informação quântica experimental. Seu grupo realizou experimentos pioneiros sobre a flecha do tempo em sistemas quânticos e relações de flutuação, explorando os limites entre a física quântica e a termodinâmica.",
+      en: "Roberto Serra is a Professor at UFABC and a researcher in quantum thermodynamics and experimental quantum information. His group performed pioneering experiments on the arrow of time in quantum systems and fluctuation relations, exploring the boundaries between quantum physics and thermodynamics."
+    }
+  }
 ];
 
 const QuasarSpeakers = () => {
   const { language } = useLanguage();
   const t = translations[language];
   const [selectedSpeaker, setSelectedSpeaker] = useState<Speaker | null>(null);
+
+  // Filter out placeholders for the display if necessary, or keep them. 
+  // keeping the original list logic.
+  const displaySpeakers = speakers.filter(s => s.id <= 10);
 
   return (
     <section id="palestrantes" className="py-24 bg-secondary/50">
@@ -192,7 +224,7 @@ const QuasarSpeakers = () => {
 
         {/* Desktop Grid (Modernizado) */}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {speakers.map((speaker) => (
+          {displaySpeakers.map((speaker) => (
             <button
               key={speaker.id}
               onClick={() => setSelectedSpeaker(speaker)}
@@ -247,7 +279,7 @@ const QuasarSpeakers = () => {
             className="w-full"
           >
             <CarouselContent className="-ml-4 pb-8">
-              {speakers.map((speaker) => (
+              {displaySpeakers.map((speaker) => (
                 <CarouselItem key={speaker.id} className="pl-4 basis-[90%] sm:basis-[60%]">
                   <button
                     onClick={() => setSelectedSpeaker(speaker)}
@@ -292,14 +324,14 @@ const QuasarSpeakers = () => {
           </Carousel>
         </div>
 
-        {/* Speaker Modal */}
+        {/* Speaker Modal - Ajustado para não ficar gigante no Mobile */}
         <Dialog open={!!selectedSpeaker} onOpenChange={() => setSelectedSpeaker(null)}>
           <DialogContent className="max-w-4xl p-0 overflow-y-auto max-h-[90vh] md:max-h-[unset] md:overflow-hidden bg-card border-none shadow-2xl rounded-2xl md:rounded-3xl">
             {selectedSpeaker && (
               <div className="flex flex-col md:flex-row">
                 
-                {/* Coluna da Imagem */}
-                <div className="relative w-full md:w-2/5 aspect-square md:aspect-auto md:h-auto md:min-h-[450px] group flex-shrink-0">
+                {/* Coluna da Imagem: Altura fixa no mobile (h-56) em vez de aspect-square */}
+                <div className="relative w-full h-56 sm:h-72 md:h-auto md:w-2/5 md:aspect-auto md:min-h-[450px] group flex-shrink-0">
                   <img
                     src={selectedSpeaker.image}
                     alt={selectedSpeaker.name}
@@ -318,7 +350,8 @@ const QuasarSpeakers = () => {
                          </span>
                       </div>
                       
-                      <DialogTitle className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 leading-tight tracking-tight">
+                      {/* Texto reduzido levemente no mobile para economizar espaço */}
+                      <DialogTitle className="text-2xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 leading-tight tracking-tight">
                         {selectedSpeaker.name}
                       </DialogTitle>
                       
