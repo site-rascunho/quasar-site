@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, ArrowRight, Quote } from "lucide-react"; // Importei Quote também para um detalhe visual
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"; // Removi DialogHeader pois faremos um layout customizado
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react"; // Importei ArrowRight
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/data/translations";
-import { cn } from "@/lib/utils";
 
 import aleksKissinger from "@/assets/speakers/aleks-kissinger.jpg";
 import fernandoBrandao from "@/assets/speakers/fernando-brandao.jpg";
@@ -201,24 +200,22 @@ const QuasarSpeakers = () => {
             <button
               key={speaker.id}
               onClick={() => setSelectedSpeaker(speaker)}
-              className="group text-left bg-background p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 rounded-sm border border-transparent hover:border-primary/10"
+              className="group text-left bg-background p-6 transition-all duration-300 hover:shadow-lg"
             >
-              <div className="aspect-square overflow-hidden mb-4 grayscale group-hover:grayscale-0 transition-all duration-500 rounded-sm relative">
+              <div className="aspect-square overflow-hidden mb-4 grayscale group-hover:grayscale-0 transition-all duration-300">
                 <img
                   src={speaker.image}
                   alt={speaker.name}
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover"
                 />
-                 {/* Efeito sutil na imagem */}
-                 <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 mix-blend-multiply"></div>
               </div>
-              <h3 className="text-lg font-medium text-foreground mb-1 group-hover:text-primary transition-colors">
+              <h3 className="text-lg font-medium text-foreground mb-1">
                 {speaker.name}
               </h3>
-              <p className="text-sm text-muted-foreground mb-1 font-medium">
+              <p className="text-sm text-muted-foreground mb-1">
                 {speaker.title[language]}
               </p>
-              <p className="text-xs text-muted-foreground uppercase tracking-wide opacity-80">
+              <p className="text-sm text-muted-foreground">
                 {speaker.institution}
               </p>
             </button>
@@ -238,8 +235,8 @@ const QuasarSpeakers = () => {
                   onClick={() => setSelectedSpeaker(speaker)}
                   className="min-w-full px-4 text-left"
                 >
-                  <div className="bg-background p-6 shadow-sm rounded-xl">
-                    <div className="aspect-square overflow-hidden mb-4 grayscale rounded-lg">
+                  <div className="bg-background p-6">
+                    <div className="aspect-square overflow-hidden mb-4 grayscale">
                       <img
                         src={speaker.image}
                         alt={speaker.name}
@@ -272,7 +269,7 @@ const QuasarSpeakers = () => {
           <div className="flex justify-center items-center gap-4 mt-6">
             <button
               onClick={prevSlide}
-              className="p-2 border border-border hover:bg-accent transition-colors rounded-full"
+              className="p-2 border border-border hover:bg-accent transition-colors"
               aria-label="Anterior"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -282,14 +279,14 @@ const QuasarSpeakers = () => {
                 <div
                   key={idx}
                   className={`w-2 h-2 rounded-full transition-colors ${
-                    idx === currentIndex ? "bg-primary" : "bg-border"
+                    idx === currentIndex ? "bg-foreground" : "bg-border"
                   }`}
                 />
               ))}
             </div>
             <button
               onClick={nextSlide}
-              className="p-2 border border-border hover:bg-accent transition-colors rounded-full"
+              className="p-2 border border-border hover:bg-accent transition-colors"
               aria-label="Próximo"
             >
               <ChevronRight className="h-5 w-5" />
@@ -297,55 +294,33 @@ const QuasarSpeakers = () => {
           </div>
         </div>
 
-        {/* Speaker Modal - Redesenhado */}
+        {/* Speaker Modal */}
         <Dialog open={!!selectedSpeaker} onOpenChange={() => setSelectedSpeaker(null)}>
-          <DialogContent className="max-w-4xl p-0 overflow-hidden bg-card border-none shadow-2xl rounded-2xl md:rounded-3xl">
+          <DialogContent className="max-w-2xl">
+            <DialogHeader>
+              <DialogTitle className="text-2xl font-light">
+                {selectedSpeaker?.name}
+              </DialogTitle>
+            </DialogHeader>
             {selectedSpeaker && (
-              <div className="flex flex-col md:flex-row">
-                
-                {/* Coluna da Imagem */}
-                <div className="relative w-full md:w-2/5 h-64 md:h-auto md:min-h-[450px] group">
+              <div className="grid md:grid-cols-2 gap-6 pt-4">
+                <div className="aspect-square overflow-hidden">
                   <img
                     src={selectedSpeaker.image}
                     alt={selectedSpeaker.name}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover"
                   />
-                  {/* Overlays para estética e legibilidade do botão fechar mobile */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-black/5"></div>
                 </div>
-
-                {/* Coluna de Conteúdo */}
-                <div className="w-full md:w-3/5 p-6 md:p-10 flex flex-col justify-center bg-background/95 backdrop-blur-sm relative">
-                   
-                   <div className="mb-6 md:mb-8 md:pr-8">
-                      {/* Badge da Instituição */}
-                      <div className="inline-flex items-center gap-2 mb-4">
-                         <span className="px-3 py-1 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest bg-primary/10 text-primary border border-primary/20 shadow-sm">
-                           {selectedSpeaker.institution}
-                         </span>
-                      </div>
-                      
-                      {/* Título e Nome */}
-                      <DialogTitle className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 leading-tight tracking-tight">
-                        {selectedSpeaker.name}
-                      </DialogTitle>
-                      
-                      <p className="text-lg md:text-xl font-medium text-muted-foreground/90 flex items-center gap-2">
-                        {selectedSpeaker.title[language]}
-                      </p>
-                   </div>
-
-                   <div className="relative">
-                      {/* Elemento decorativo */}
-                      <Quote className="absolute -top-4 -left-2 w-8 h-8 text-primary/10 rotate-180" />
-                      
-                      <div className="prose prose-sm md:prose-base text-muted-foreground leading-relaxed max-h-[300px] overflow-y-auto pr-4 custom-scrollbar relative z-10 pl-1">
-                         <p>{selectedSpeaker.bio[language]}</p>
-                      </div>
-                   </div>
-
-                   {/* Background decorativo sutil */}
-                   <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                <div>
+                  <p className="text-sm font-medium text-foreground mb-1">
+                    {selectedSpeaker.title[language]}
+                  </p>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {selectedSpeaker.institution}
+                  </p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {selectedSpeaker.bio[language]}
+                  </p>
                 </div>
               </div>
             )}
