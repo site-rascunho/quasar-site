@@ -1,6 +1,13 @@
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, ArrowRight, Quote } from "lucide-react";
+import { ArrowRight, Quote } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from "@/components/ui/carousel"; //
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/data/translations";
 
@@ -176,16 +183,7 @@ const speakers: Speaker[] = [
 const QuasarSpeakers = () => {
   const { language } = useLanguage();
   const t = translations[language];
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedSpeaker, setSelectedSpeaker] = useState<Speaker | null>(null);
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % speakers.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + speakers.length) % speakers.length);
-  };
 
   return (
     <section id="palestrantes" className="py-24 bg-secondary">
@@ -194,7 +192,7 @@ const QuasarSpeakers = () => {
           {t.speakers.title}
         </h2>
 
-        {/* Desktop Grid */}
+        {/* Desktop Grid (Mantido igual) */}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {speakers.map((speaker) => (
             <button
@@ -208,7 +206,6 @@ const QuasarSpeakers = () => {
                   alt={speaker.name}
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
-                 {/* Efeito sutil na imagem */}
                  <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 mix-blend-multiply"></div>
               </div>
               <h3 className="text-lg font-medium text-foreground mb-1 group-hover:text-primary transition-colors">
@@ -224,107 +221,87 @@ const QuasarSpeakers = () => {
           ))}
         </div>
 
-        {/* Mobile Carousel */}
-        <div className="md:hidden relative">
-          <div className="overflow-hidden">
-            <div 
-              className="flex transition-transform duration-300 ease-out"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
+        {/* Mobile Carousel (Com Swipe/Deslizar) */}
+        <div className="md:hidden">
+          <Carousel 
+             opts={{ align: "start", loop: true }}
+             className="w-full max-w-[320px] mx-auto sm:max-w-md"
+          >
+            <CarouselContent className="-ml-4">
               {speakers.map((speaker) => (
-                <button
-                  key={speaker.id}
-                  onClick={() => setSelectedSpeaker(speaker)}
-                  className="min-w-full px-4 text-left"
-                >
-                  <div className="bg-background p-6 shadow-sm rounded-xl">
-                    <div className="aspect-square overflow-hidden mb-4 grayscale rounded-lg">
-                      <img
-                        src={speaker.image}
-                        alt={speaker.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <h3 className="text-lg font-medium text-foreground mb-1">
-                      {speaker.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-1">
-                      {speaker.title[language]}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      {speaker.institution}
-                    </p>
+                <CarouselItem key={speaker.id} className="pl-4 basis-[85%] sm:basis-1/2">
+                   <button
+                      onClick={() => setSelectedSpeaker(speaker)}
+                      className="w-full text-left bg-background p-5 rounded-xl shadow-sm border border-border/50 h-full flex flex-col"
+                    >
+                      <div className="aspect-square overflow-hidden mb-4 rounded-lg bg-secondary/50">
+                        <img
+                          src={speaker.image}
+                          alt={speaker.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold text-foreground mb-1 leading-tight">
+                          {speaker.name}
+                        </h3>
+                        <p className="text-xs text-primary font-medium mb-1 uppercase tracking-wide">
+                           {speaker.institution}
+                        </p>
+                        <p className="text-sm text-muted-foreground line-clamp-2">
+                          {speaker.title[language]}
+                        </p>
+                      </div>
 
-                     {/* MENSAGEM VER MAIS (MOBILE ONLY) */}
-                    <div className="mt-4 flex items-center gap-1.5 text-xs font-medium text-primary">
-                        {/* @ts-ignore */}
-                        <span>{t.speakers.seeMore}</span>
-                        <ArrowRight className="w-3 h-3" />
-                    </div>
-                  </div>
-                </button>
+                      <div className="mt-4 flex items-center gap-1.5 text-xs font-bold text-primary/80">
+                          {/* @ts-ignore */}
+                          <span>{t.speakers.seeMore}</span>
+                          <ArrowRight className="w-3 h-3" />
+                      </div>
+                    </button>
+                </CarouselItem>
               ))}
+            </CarouselContent>
+            {/* Controles opcionais (flechas) caso o usuário não queira só deslizar */}
+            <div className="hidden sm:block">
+               <CarouselPrevious className="-left-12" />
+               <CarouselNext className="-right-12" />
             </div>
-          </div>
-
-          {/* Carousel Controls */}
-          <div className="flex justify-center items-center gap-4 mt-6">
-            <button
-              onClick={prevSlide}
-              className="p-2 border border-border hover:bg-accent transition-colors rounded-full"
-              aria-label="Anterior"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <div className="flex gap-2">
-              {speakers.map((_, idx) => (
-                <div
-                  key={idx}
-                  className={`w-2 h-2 rounded-full transition-colors ${
-                    idx === currentIndex ? "bg-primary" : "bg-border"
-                  }`}
-                />
-              ))}
-            </div>
-            <button
-              onClick={nextSlide}
-              className="p-2 border border-border hover:bg-accent transition-colors rounded-full"
-              aria-label="Próximo"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
+          </Carousel>
+          
+          {/* Indicador visual de swipe (opcional) */}
+          <div className="flex justify-center mt-6 gap-1 opacity-20">
+             <div className="w-1 h-1 bg-foreground rounded-full"></div>
+             <div className="w-1 h-1 bg-foreground rounded-full"></div>
+             <div className="w-1 h-1 bg-foreground rounded-full"></div>
           </div>
         </div>
 
-        {/* Speaker Modal - Redesenhado com Fix Mobile */}
+        {/* Speaker Modal (Mantido com a correção da imagem cortada) */}
         <Dialog open={!!selectedSpeaker} onOpenChange={() => setSelectedSpeaker(null)}>
           <DialogContent className="max-w-4xl p-0 overflow-y-auto max-h-[90vh] md:max-h-[unset] md:overflow-hidden bg-card border-none shadow-2xl rounded-2xl md:rounded-3xl">
             {selectedSpeaker && (
               <div className="flex flex-col md:flex-row">
                 
-                {/* Coluna da Imagem: Usando aspect-square no mobile para evitar cortes */}
+                {/* Imagem: aspect-square no mobile para evitar cortes */}
                 <div className="relative w-full md:w-2/5 aspect-square md:aspect-auto md:h-auto md:min-h-[450px] group flex-shrink-0">
                   <img
                     src={selectedSpeaker.image}
                     alt={selectedSpeaker.name}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  {/* Overlays para estética e legibilidade do botão fechar mobile */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-black/5"></div>
                 </div>
 
-                {/* Coluna de Conteúdo */}
                 <div className="w-full md:w-3/5 p-6 md:p-10 flex flex-col justify-center bg-background/95 backdrop-blur-sm relative">
                    
                    <div className="mb-6 md:mb-8 md:pr-8">
-                      {/* Badge da Instituição */}
                       <div className="inline-flex items-center gap-2 mb-4">
                          <span className="px-3 py-1 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest bg-primary/10 text-primary border border-primary/20 shadow-sm">
                            {selectedSpeaker.institution}
                          </span>
                       </div>
                       
-                      {/* Título e Nome */}
                       <DialogTitle className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 leading-tight tracking-tight">
                         {selectedSpeaker.name}
                       </DialogTitle>
@@ -335,7 +312,6 @@ const QuasarSpeakers = () => {
                    </div>
 
                    <div className="relative">
-                      {/* Elemento decorativo */}
                       <Quote className="absolute -top-4 -left-2 w-8 h-8 text-primary/10 rotate-180" />
                       
                       <div className="prose prose-sm md:prose-base text-muted-foreground leading-relaxed max-h-[300px] overflow-y-auto pr-4 custom-scrollbar relative z-10 pl-1">
@@ -343,7 +319,6 @@ const QuasarSpeakers = () => {
                       </div>
                    </div>
 
-                   {/* Background decorativo sutil */}
                    <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                 </div>
               </div>
