@@ -47,7 +47,7 @@ const QuasarRegistration = () => {
             {/* BOTÃO MOBILE (Link Atualizado e Texto Traduzido) */}
             <div className="md:hidden p-6 pb-2">
               <a
-                href="https://www.even3.com.br/ii-encontro-quasar-688507/"
+                href="https://www.even3.com.br/tickets/get/ii-encontro-quasar-688507?even3_orig=get_tickets"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center w-full px-6 py-4 bg-[#0097FF] hover:bg-[#007acc] text-white rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-xl gap-2 active:scale-95"
