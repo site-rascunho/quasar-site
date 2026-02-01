@@ -255,15 +255,19 @@ const QuasarSpeakers = () => {
                   >
                     <div className="bg-background rounded-2xl overflow-hidden border border-border/50 shadow-sm transition-all duration-300 active:scale-[0.98] h-full flex flex-col">
                       <div className="aspect-square overflow-hidden relative">
+                        
+                        {/* --- AQUI ESTÁ A MUDANÇA --- */}
                         <img
                           src={speaker.image}
                           alt={speaker.name}
-                          className="w-full h-full object-cover transition-transform duration-500 group-active:scale-105 grayscale-[20%]"
+                          className="w-full h-full object-cover transition-all duration-500 group-active:scale-105 grayscale group-active:grayscale-0"
                         />
+                        {/* --------------------------- */}
+
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
                         <div className="absolute bottom-4 left-4 right-4">
                           <p className="text-white/90 text-[10px] uppercase tracking-wider font-semibold mb-1 bg-black/30 backdrop-blur-sm inline-block px-2 py-0.5 rounded-full border border-white/10">
-                             {speaker.institution}
+                            {speaker.institution}
                           </p>
                           <h3 className="text-xl font-bold text-white leading-tight">
                             {speaker.name}
