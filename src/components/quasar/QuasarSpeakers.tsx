@@ -301,7 +301,7 @@ const QuasarSpeakers = () => {
                 
                 {/* Coluna da Imagem */}
                 {/* Alterado de aspect-square para aspect-video no mobile para ocupar menos altura*/}
-                <div className="relative w-full md:w-2/5 aspect-video md:aspect-auto md:h-auto md:min-h-[450px] group flex-shrink-0">
+                <div className="relative w-full md:w-2/5 aspect-video md:aspect-video md:h-auto md:min-h-[450px] group flex-shrink-0">
                   <img
                     src={selectedSpeaker.image}
                     alt={selectedSpeaker.name}
