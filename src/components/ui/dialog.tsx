@@ -42,8 +42,11 @@ const DialogContent = React.forwardRef<
       {...props}
     >
       {children}
-      {/* Botão ajustado: Removemos o background no PC com md:data-[state=open]:bg-transparent */}
-      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-full p-2 opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground md:data-[state=open]:bg-transparent">
+      {/* Alteração realizada:
+          Adicionado 'md:focus:ring-0 md:focus:ring-offset-0' para remover o anel de foco no PC.
+          Mantido 'md:data-[state=open]:bg-transparent' da alteração anterior.
+      */}
+      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-full p-2 opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground md:data-[state=open]:bg-transparent md:focus:ring-0 md:focus:ring-offset-0">
         <X className="h-5 w-5" />
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
